@@ -1,0 +1,24 @@
+{
+    "name": "OmiyaGames.Settings.Editor",
+    "rootNamespace": "OmiyaGames.Settings.Editor",
+    "references": [
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:69448af7b92c7f342b298e06a37122aa",
+        "GUID:cdda17712c724478898665290e9a02cc",
+        "GUID:90033a3be777c4196bcbfc7e725c4e31",
+        "GUID:5a47daee1058bbd4ebc7a2d2e7de3c24",
+        "GUID:d766f256271d9b74799b11c75fce9f10",
+        "GUID:de7529f634f783eb59796ad332cd358f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
