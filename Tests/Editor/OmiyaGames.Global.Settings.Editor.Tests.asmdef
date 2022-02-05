@@ -1,12 +1,15 @@
 {
-    "name": "OmiyaGames.Settings.Tests",
-    "rootNamespace": "OmiyaGames.Settings.Tests",
+    "name": "OmiyaGames.Global.Settings.Editor.Tests",
+    "rootNamespace": "OmiyaGames.Global.Settings.Editor.Tests",
     "references": [
         "GUID:27619889b8ba8c24980f49ee34dbb44a",
         "GUID:0acc523941302664db1f4e527237feb3",
-        "GUID:de7529f634f783eb59796ad332cd358f"
+        "GUID:de7529f634f783eb59796ad332cd358f",
+        "GUID:6c1b9d9614ed6f3c99b349173c320605"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
