@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using DataHelper = OmiyaGames.Global.Settings.Data;
 
 namespace OmiyaGames.Global.Settings
 {
@@ -11,7 +11,7 @@ namespace OmiyaGames.Global.Settings
 	/// <copyright file="BaseSettingsManager.cs" company="Omiya Games">
 	/// The MIT License (MIT)
 	/// 
-	/// Copyright (c) 2021 Omiya Games
+	/// Copyright (c) 2022 Omiya Games
 	/// 
 	/// Permission is hereby granted, free of charge, to any person obtaining a copy
 	/// of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,8 @@ namespace OmiyaGames.Global.Settings
 	/// </listheader>
 	/// <item>
 	/// <term>
-	/// <strong>Version:</strong> 1.1.0<br/>
-	/// <strong>Date:</strong> 11/27/2021<br/>
+	/// <strong>Version:</strong> 1.0.0-pre.1<br/>
+	/// <strong>Date:</strong> 2/6/2022<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
 	/// <description>Initial verison.</description>
@@ -69,28 +69,6 @@ namespace OmiyaGames.Global.Settings
 	/// </remarks>
 	public abstract class BaseSettingsManager<TManager, TData> : MonoBehaviour where TManager : BaseSettingsManager<TManager, TData> where TData : BaseSettingsData
 	{
-		/// <summary>
-		/// Indicates the status of whether
-		/// this manager grabbed an instance of 
-		/// <typeparamref name="TData"/>.
-		/// </summary>
-		public enum Status
-		{
-			/// <summary>
-			/// Working on loading the project settings.
-			/// </summary>
-			NowLoading,
-			/// <summary>
-			/// Successfully loaded the project settings.
-			/// </summary>
-			RetrievedProjectData,
-			/// <summary>
-			/// Failed to load the project settings,
-			/// using default settings instead.
-			/// </summary>
-			UsingDefaultData,
-		}
-
 		TData data = null;
 		AsyncOperationHandle<TData> loadDataHandle;
 
@@ -102,7 +80,7 @@ namespace OmiyaGames.Global.Settings
 		{
 			get
 			{
-				TManager returnInstance = ComponentSingleton<TManager>.Get(out bool isFirstTimeCreated);
+				TManager returnInstance = ComponentSingleton<TManager>.Get(true, out bool isFirstTimeCreated);
 				if (isFirstTimeCreated)
 				{
 					returnInstance.StartCoroutine(returnInstance.OnSetup());
@@ -122,18 +100,18 @@ namespace OmiyaGames.Global.Settings
 		/// Current status of whether
 		/// data for this manager has been loaded or not
 		/// </summary>
-		public static Status DataStatus
+		public static DataHelper.Status DataStatus
 		{
 			get
 			{
 				switch (Instance.loadDataHandle.Status)
 				{
 					case AsyncOperationStatus.Succeeded:
-						return Status.RetrievedProjectData;
+						return DataHelper.Status.RetrievedProjectData;
 					case AsyncOperationStatus.Failed:
-						return Status.UsingDefaultData;
+						return DataHelper.Status.UsingDefaultData;
 					default:
-						return Status.NowLoading;
+						return DataHelper.Status.NowLoading;
 				}
 			}
 		}
@@ -191,7 +169,7 @@ namespace OmiyaGames.Global.Settings
 		protected virtual void OnDestroy()
 		{
 			// Destroy default data
-			if (DataStatus == Status.UsingDefaultData)
+			if (DataStatus == DataHelper.Status.UsingDefaultData)
 			{
 				Destroy(data);
 			}

@@ -3,7 +3,7 @@
     "rootNamespace": "OmiyaGames.Global.Settings.Tests",
     "references": [
         "GUID:27619889b8ba8c24980f49ee34dbb44a",
-        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:5a47daee1058bbd4ebc7a2d2e7de3c24",
         "GUID:de7529f634f783eb59796ad332cd358f"
     ],
     "includePlatforms": [],

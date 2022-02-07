@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using NUnit.Framework;
 
-namespace OmiyaGames.Global.Settings
+namespace OmiyaGames.Global.Settings.Tests
 {
 	///-----------------------------------------------------------------------
 	/// <remarks>
-	/// <copyright file="BaseSettingsData.cs" company="Omiya Games">
+	/// <copyright file="TestSettingsData.cs" company="Omiya Games">
 	/// The MIT License (MIT)
 	/// 
 	/// Copyright (c) 2022 Omiya Games
@@ -36,64 +34,63 @@ namespace OmiyaGames.Global.Settings
 	/// </listheader>
 	/// <item>
 	/// <term>
-	/// <strong>Date:</strong> 2/5/2022<br/>
+	/// <strong>Version:</strong> 1.0.0-pre.1<br/>
+	/// <strong>Date:</strong> 2/6/2022<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
-	/// <description>
-	/// Initial version.
-	/// </description>
+	/// <description>Initial version.</description>
 	/// </item>
 	/// </list>
 	/// </remarks>
 	///-----------------------------------------------------------------------
 	/// <summary>
-	/// The data stored as addressables that the editor and runtime references
+	/// Test instance of <seealso cref="BaseSettingsData"/>.
 	/// </summary>
-	public abstract class BaseSettingsData : ScriptableObject, ISerializationCallbackReceiver
+	public class TestSettingsData : BaseSettingsData
 	{
-		[SerializeField, HideInInspector]
-		int serializedVersion = 0;
-
 		/// <summary>
-		/// The current version of this setting.
+		/// Allows one to change <see cref="CurrentVersion"/>.
 		/// </summary>
-		/// <remarks>
-		/// Always, ALWAYS update this whenever an upgrade from
-		/// an old version of the base settings needs to be updated.
-		/// </remarks>
-		public abstract int CurrentVersion
+		public static int TestVersion
 		{
 			get;
-		}
-
-		/// <inheritdoc/>
-		public virtual void OnAfterDeserialize()
-		{
-			// Check if upgrade is necessary; if so, run the event.
-			if ((serializedVersion < CurrentVersion) && (OnUpgrade(serializedVersion, out string errorMessage) == false))
-			{
-				// Log any errors in the process
-				Debug.LogError(errorMessage, this);
-			}
-		}
-
-		/// <inheritdoc/>
-		public virtual void OnBeforeSerialize()
-		{
-			// Set the version number
-			serializedVersion = CurrentVersion;
-		}
-
+			set;
+		} = 0;
 		/// <summary>
-		/// This event is called when the serialized object is older than <see cref="CurrentVersion"/>.
+		/// Set to true if we're expecting <see cref="OnUpgrade(int, out string)"/>
+		/// to be called on deserialization.
 		/// </summary>
-		/// <param name="oldVersion">The last serialization version number.</param>
-		/// <param name="errorMessage">Error message to print on failure.</param>
-		/// <returns>True if successful; false, otherwise.</returns>
-		protected virtual bool OnUpgrade(int oldVersion, out string errorMessage)
+		public static bool AsserOnUpgradeCalled
 		{
-			errorMessage = null;
-			return true;
+			get;
+			set;
+		} = false;
+
+		bool isOnUpgradeCalled = false;
+
+		/// <inheritdoc/>
+		public override int CurrentVersion => TestVersion;
+
+		/// <inheritdoc/>
+		public override void OnAfterDeserialize()
+		{
+			// Reset upgrade flag
+			isOnUpgradeCalled = false;
+
+			// Check if upgrade is necessary; if so, run the event.
+			base.OnAfterDeserialize();
+
+			// Assert whether OnUpgrade was called or not
+			string message = (AsserOnUpgradeCalled ? "Expected OnUpgrade() will be called." : "Expected OnUpgrade() will NOT be called.");
+			Assert.AreEqual(AsserOnUpgradeCalled, isOnUpgradeCalled, message);
+		}
+
+		/// <inheritdoc/>
+		protected override bool OnUpgrade(int oldVersion, out string errorMessage)
+		{
+			// Flag that upgrade is being called
+			isOnUpgradeCalled = true;
+			return base.OnUpgrade(oldVersion, out errorMessage);
 		}
 	}
 }

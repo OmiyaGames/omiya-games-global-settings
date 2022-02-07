@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace OmiyaGames.Global.Settings
 {
 	///-----------------------------------------------------------------------
 	/// <remarks>
-	/// <copyright file="BaseSettingsData.cs" company="Omiya Games">
+	/// <copyright file="BaseSettingsManager.cs" company="Omiya Games">
 	/// The MIT License (MIT)
 	/// 
 	/// Copyright (c) 2022 Omiya Games
@@ -36,64 +32,40 @@ namespace OmiyaGames.Global.Settings
 	/// </listheader>
 	/// <item>
 	/// <term>
-	/// <strong>Date:</strong> 2/5/2022<br/>
+	/// <strong>Version:</strong> 1.0.0-pre.1<br/>
+	/// <strong>Date:</strong> 2/6/2022<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
-	/// <description>
-	/// Initial version.
-	/// </description>
+	/// <description>Initial verison.</description>
 	/// </item>
 	/// </list>
 	/// </remarks>
 	///-----------------------------------------------------------------------
 	/// <summary>
-	/// The data stored as addressables that the editor and runtime references
+	/// Helper set of info.
 	/// </summary>
-	public abstract class BaseSettingsData : ScriptableObject, ISerializationCallbackReceiver
+	public static class Data
 	{
-		[SerializeField, HideInInspector]
-		int serializedVersion = 0;
-
 		/// <summary>
-		/// The current version of this setting.
+		/// Indicates the status of whether
+		/// this manager grabbed an instance of 
+		/// <typeparamref name="TData"/>.
 		/// </summary>
-		/// <remarks>
-		/// Always, ALWAYS update this whenever an upgrade from
-		/// an old version of the base settings needs to be updated.
-		/// </remarks>
-		public abstract int CurrentVersion
+		public enum Status
 		{
-			get;
-		}
-
-		/// <inheritdoc/>
-		public virtual void OnAfterDeserialize()
-		{
-			// Check if upgrade is necessary; if so, run the event.
-			if ((serializedVersion < CurrentVersion) && (OnUpgrade(serializedVersion, out string errorMessage) == false))
-			{
-				// Log any errors in the process
-				Debug.LogError(errorMessage, this);
-			}
-		}
-
-		/// <inheritdoc/>
-		public virtual void OnBeforeSerialize()
-		{
-			// Set the version number
-			serializedVersion = CurrentVersion;
-		}
-
-		/// <summary>
-		/// This event is called when the serialized object is older than <see cref="CurrentVersion"/>.
-		/// </summary>
-		/// <param name="oldVersion">The last serialization version number.</param>
-		/// <param name="errorMessage">Error message to print on failure.</param>
-		/// <returns>True if successful; false, otherwise.</returns>
-		protected virtual bool OnUpgrade(int oldVersion, out string errorMessage)
-		{
-			errorMessage = null;
-			return true;
+			/// <summary>
+			/// Working on loading the project settings.
+			/// </summary>
+			NowLoading,
+			/// <summary>
+			/// Successfully loaded the project settings.
+			/// </summary>
+			RetrievedProjectData,
+			/// <summary>
+			/// Failed to load the project settings,
+			/// using default settings instead.
+			/// </summary>
+			UsingDefaultData,
 		}
 	}
 }
