@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
+using OmiyaGames.Common.Editor;
 
 namespace OmiyaGames.Global.Settings.Editor
 {
@@ -55,9 +56,10 @@ namespace OmiyaGames.Global.Settings.Editor
 	/// </typeparam>
 	public abstract partial class BaseSettingsEditor<TData> : SettingsProvider where TData : BaseSettingsData
 	{
-		public static readonly GUIContent ACTIVE_SETTINGS_MSG = EditorGUIUtility.TrTextContent("Active Settings", "The settings that will be used by this project and included into any builds.");
-		public static readonly GUIContent CREATE_BTN = EditorGUIUtility.TrTextContent("Create...");
-		public const string INDENT_CLASS = ".indent";
+		public const string FILE_EXTENSION = "asset";
+		const string UXML_DIR = "Packages/com.omiyagames.global.settings/Editor/";
+		const string UXML_ROOT_EDITOR_PATH = UXML_DIR + "SettingsEditorRoot.uxml";
+		const string UXML_CREATE_SETTINGS_EDITOR_PATH = UXML_DIR + "CreateSettingsBody.uxml";
 
 		/// <summary>
 		/// Constructs a project-scoped <see cref="SettingsProvider"/>.
@@ -79,22 +81,33 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// </remarks>
 		public abstract string ConfigName { get; }
 		/// <summary>
-		/// The path to the UXML file to display
+		/// The text to replace the header.
+		/// </summary>
+		public abstract string HeaderText { get; }
+		/// <summary>
+		/// The url to help assist users.
+		/// </summary>
+		public abstract string HelpUrl { get; }
+		/// <summary>
+		/// The path to the UXML file, used to edit
 		/// <typeparamref name="TData"/>
 		/// </summary>
 		public abstract string UxmlPath { get; }
 		/// <summary>
-		/// The path to the USS stylesheet.
-		/// Used for "No Settings Available" message.
+		/// The default settings file name, without the file extension.
 		/// </summary>
-		public virtual string UssPath =>
-			"Packages/com.omiyagames.global.settings/Editor/default-style.uss";
+		public abstract string DefaultSettingsFileName { get; }
 		/// <summary>
 		/// The message to display if there are no settings
 		/// file available.
 		/// </summary>
 		public virtual string NoSettingsMsg =>
 			"You have no active settings for this feature. Would you like to create one?";
+		/// <summary>
+		/// The title of the dialog that appears in the pop-up after
+		/// clicking "Create...'
+		/// </summary>
+		public virtual string CreateNewSettingsDialogTitle => "Save Settings";
 		/// <summary>
 		/// Gets or sets <typeparamref name="TData"/> stored in.
 		/// <seealso cref="EditorBuildSettings"/>.
@@ -126,94 +139,80 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// button is clicked.
 		/// </summary>
 		/// <returns></returns>
-		public virtual TData CreateNewSettings()
+		public virtual void CreateNewSettings(ClickEvent _ = null)
 		{
-			TData returnSettings = null;
-			string filePath = EditorUtility.SaveFilePanel("Save Settings", "Settings", ConfigName, ".asset");
+			string filePath = EditorUtility.SaveFilePanel(CreateNewSettingsDialogTitle, "Settings", DefaultSettingsFileName, FILE_EXTENSION);
 			if (string.IsNullOrEmpty(filePath) == false)
 			{
-				returnSettings = ScriptableObject.CreateInstance<TData>();
+				TData returnSettings = ScriptableObject.CreateInstance<TData>();
 				AssetDatabase.CreateAsset(returnSettings, filePath);
 				AssetDatabase.SaveAssetIfDirty(returnSettings);
+				ActiveSettings = returnSettings;
 			}
-			return returnSettings;
 		}
 
 		/// <inheritdoc/>
 		public override void OnActivate(string searchContext, VisualElement rootElement)
 		{
-			// This function is called when the user clicks on the MyCustom element in the Settings window.
-			VisualElement fullTree;
-			if (ActiveSettings != null)
-			{
-				// Import UXML
-				VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath);
+			// Import UXML
+			VisualTreeAsset uxmlTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_ROOT_EDITOR_PATH);
+			TemplateContainer baseTree = uxmlTree.CloneTree();
+			rootElement.Add(baseTree);
 
-				// Apply the UXML to the root element
-				fullTree = visualTree.CloneTree();
-				rootElement.Add(fullTree);
+			// FIXME: Update Header
+			// add proper abstract fields to fix the header properly
+			ProjectSettingsHeader header = baseTree.Q<ProjectSettingsHeader>("Header");
+			header.text = HeaderText;
+			header.HelpUrl = HelpUrl;
 
-				// Bind the UXML to a serialized object
-				// Note: this must be done last
-				var serializedSettings = new SerializedObject(ActiveSettings);
-				rootElement.Bind(serializedSettings);
-			}
-			else
-			{
-				fullTree = GetNoSettingsElements();
-				rootElement.Add(fullTree);
-			}
+			// Populate the body with settings info
+			VisualElement body = baseTree.Q<VisualElement>("Body");
+			VisualElement bodyContent = (ActiveSettings != null) ? GetEditSettingsTree() : GetCreateSettingsTree();
+			body.Add(bodyContent);
+		}
 
-			// Check if search needs to be applied
-			if (string.IsNullOrEmpty(searchContext) == false)
-			{
-				SettingsEditorHelpers.UpdateElementVisibility(fullTree, searchContext);
-			}
+		/// <summary>
+		/// Creates a <see cref="VisualElement"/> tree
+		/// to edit the settings asset.
+		/// </summary>
+		protected virtual VisualElement GetEditSettingsTree()
+		{
+			// Import UXML
+			VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath);
+			VisualElement returnTree = visualTree.CloneTree();
+
+			// Bind the UXML to a serialized object
+			// Note: this must be done last
+			var serializedSettings = new SerializedObject(ActiveSettings);
+			returnTree.Bind(serializedSettings);
+			return returnTree;
 		}
 
 		/// <summary>
 		/// Creates a <see cref="VisualElement"/> tree
 		/// displaying message to create a settings asset.
 		/// </summary>
-		protected VisualElement GetNoSettingsElements()
+		VisualElement GetCreateSettingsTree()
 		{
-			// Setup stylesheet and return variable
-			StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(UssPath);
-			VisualElement fullTree = new VisualElement();
-			fullTree.AddToClassList(INDENT_CLASS);
-			fullTree.styleSheets.Add(styleSheet);
+			// Grab the body
+			VisualTreeAsset uxmlTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_CREATE_SETTINGS_EDITOR_PATH);
+			VisualElement returnTree = uxmlTree.CloneTree();
 
-			// Append object field that takes in TData
-			var activeSettingsField = new ObjectField(ACTIVE_SETTINGS_MSG.text);
-			activeSettingsField.tooltip = ACTIVE_SETTINGS_MSG.tooltip;
-			activeSettingsField.allowSceneObjects = false;
-			activeSettingsField.objectType = typeof(TData);
-			activeSettingsField.value = ActiveSettings;
-			activeSettingsField.RegisterCallback<ChangeEvent<Object>>(e =>
-			{
-				ActiveSettings = e.newValue as TData;
-			});
-			fullTree.Add(activeSettingsField);
+			// Update Object Field
+			ObjectField activeSettings = returnTree.Q<ObjectField>("ActiveSettings");
+			activeSettings.objectType = typeof(TData);
+			activeSettings.value = ActiveSettings;
+			activeSettings.RegisterCallback<ChangeEvent<Object>>(e => ActiveSettings = e.newValue as TData);
 
-			// Append the help-box
+			// Update help info
+			VisualElement helpInfo = returnTree.Q<VisualElement>("HelpInfo");
 			var noSettingsHelpBox = new HelpBox(NoSettingsMsg, HelpBoxMessageType.Info);
-			noSettingsHelpBox.StretchToParentWidth();
-			fullTree.Add(noSettingsHelpBox);
+			helpInfo.Add(noSettingsHelpBox);
 
-			// Append the create button
-			var createSettingsButton = new Button(() =>
-			{
-				TData created = CreateNewSettings();
-				if (created != null)
-				{
-					ActiveSettings = created;
-				}
-			});
-			createSettingsButton.text = CREATE_BTN.text;
-			createSettingsButton.style.width = 100;
-			fullTree.Add(createSettingsButton);
-
-			return fullTree;
+			// Register CreateNewSettings into Create button
+			Button createButton = returnTree.Q<Button>("CreateButton");
+			createButton.RegisterCallback<ClickEvent>(CreateNewSettings);
+			return returnTree;
 		}
 	}
 }

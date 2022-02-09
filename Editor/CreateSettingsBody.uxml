@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" oge="OmiyaGames.Common.Editor" editor-extension-mode="True">
+	<Style src="project://database/Packages/com.omiyagames.global.settings/Editor/default-style.uss?fileID=7433441132597879392&amp;guid=3ae46e517b369d0478dabad92787dd4f&amp;type=3#default-style" />
+	<uie:ObjectField label="Active Settings" name="ActiveSettings" tooltip="The settings that will be used by this project and included into any builds." allow-scene-objects="false" />
+	<ui:VisualElement name="HelpInfo" />
+	<ui:Button text="Create..." name="CreateButton" tabindex="1" style="width: 100px;" />
+</ui:UXML>

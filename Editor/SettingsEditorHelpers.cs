@@ -63,32 +63,32 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// True if <paramref name="element"/> is still visible;
 		/// false, otherwise.
 		/// </returns>
-		public static bool UpdateElementVisibility(VisualElement element, string searchContext)
-		{
-			// Check if this element is a label
-			bool isVisible = false;
-			if (element is Label)
-			{
-				// Compare the text in the label to search term
-				string labelText = ((Label)element).text;
+		//public static bool UpdateElementVisibility(VisualElement element, string searchContext)
+		//{
+		//	// Check if this element is a label
+		//	bool isVisible = false;
+		//	if (element is Label)
+		//	{
+		//		// Compare the text in the label to search term
+		//		string labelText = ((Label)element).text;
 
-				// If there's a match, make this element visible
-				isVisible |= searchContext.Equals(labelText, System.StringComparison.CurrentCultureIgnoreCase);
-			}
+		//		// If there's a match, make this element visible
+		//		isVisible |= searchContext.Equals(labelText, System.StringComparison.CurrentCultureIgnoreCase);
+		//	}
 
-			// If the label is visible, skip the children (thus, leaving them visible.)
-			// Otherwise, go through the children and see if they are visible.
-			if ((isVisible == false) && (element.childCount > 0))
-			{
-				foreach (var child in element.Children())
-				{
-					isVisible |= UpdateElementVisibility(child, searchContext);
-				}
-			}
+		//	// If the label is visible, skip the children (thus, leaving them visible.)
+		//	// Otherwise, go through the children and see if they are visible.
+		//	if ((isVisible == false) && (element.childCount > 0))
+		//	{
+		//		foreach (var child in element.Children())
+		//		{
+		//			isVisible |= UpdateElementVisibility(child, searchContext);
+		//		}
+		//	}
 
-			// Update the element's visibility
-			element.visible = isVisible;
-			return isVisible;
-		}
+		//	// Update the element's visibility
+		//	element.visible = isVisible;
+		//	return isVisible;
+		//}
 	}
 }

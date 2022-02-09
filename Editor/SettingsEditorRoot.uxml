@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" oge="OmiyaGames.Common.Editor" editor-extension-mode="True">
+	<Style src="project://database/Packages/com.omiyagames.global.settings/Editor/default-style.uss?fileID=7433441132597879392&amp;guid=3ae46e517b369d0478dabad92787dd4f&amp;type=3#default-style" />
+	<ui:VisualElement name="Style">
+		<ui:VisualElement name="Root">
+			<OmiyaGames.Common.Editor.ProjectSettingsHeader text="Header" name="Header" help-url="https://omiyagames.github.io/omiya-games-global-settings" />
+			<OmiyaGames.Common.Editor.Spacer />
+			<ui:VisualElement name="Body" class="indent" />
+		</ui:VisualElement>
+	</ui:VisualElement>
+</ui:UXML>
