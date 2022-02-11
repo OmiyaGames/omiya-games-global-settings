@@ -109,8 +109,7 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// </summary>
 		public virtual string CreateNewSettingsDialogTitle => "Save Settings";
 		/// <summary>
-		/// The message to display if there are no settings
-		/// file available.
+		/// The message to display in the save settings dialog.
 		/// </summary>
 		public virtual string SaveSettingsMsg =>
 			"Please enter a filename to save this settings to.";
@@ -137,6 +136,14 @@ namespace OmiyaGames.Global.Settings.Editor
 				}
 			}
 		}
+		/// <summary>
+		/// The settings content tree.
+		/// </summary>
+		protected VisualElement BodyContent
+		{
+			get;
+			private set;
+		} = null;
 
 		/// <summary>
 		/// Creates a new instance of
@@ -147,25 +154,12 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// <returns></returns>
 		public virtual void CreateNewSettings(ClickEvent _ = null)
 		{
-			while (true)
+			// Open the dialog for creating a new file
+			string filePath = EditorUtility.SaveFilePanelInProject(CreateNewSettingsDialogTitle, DefaultSettingsFileName, FILE_EXTENSION, SaveSettingsMsg);
+
+			// Check if the user didn't cancel
+			if (string.IsNullOrEmpty(filePath) == false)
 			{
-				// Open the dialog for creating a new file
-				string filePath = EditorUtility.SaveFilePanelInProject(CreateNewSettingsDialogTitle, DefaultSettingsFileName, FILE_EXTENSION, SaveSettingsMsg);
-				if (string.IsNullOrEmpty(filePath) == true)
-				{
-					// The user canceled, stop progressing
-					return;
-				}
-				else if (filePath.StartsWith(Application.dataPath) == false)
-				{
-					// Show a pop-up indicating wrong folder
-					EditorUtility.DisplayDialog("Creating Settings File Failed", "The file needs to be placed in the Assets folder, or any other nested folders.", "OK");
-					continue;
-				}
-
-				// Trim the paths string to be relative
-				filePath = "Assets" + filePath.Substring(Application.dataPath.Length);
-
 				// Attempt to create the settings folder
 				TData returnSettings = ScriptableObject.CreateInstance<TData>();
 				returnSettings.name = DefaultSettingsFileName;
@@ -176,8 +170,12 @@ namespace OmiyaGames.Global.Settings.Editor
 				ActiveSettings = returnSettings;
 
 				// Redraw this UI
-				Repaint();
-				return;
+				if(BodyContent != null)
+				{
+					BodyContent.Clear();
+					BodyContent.Add(GetEditSettingsTree());
+					Repaint();
+				}
 			}
 		}
 
@@ -189,16 +187,15 @@ namespace OmiyaGames.Global.Settings.Editor
 			TemplateContainer baseTree = uxmlTree.CloneTree();
 			rootElement.Add(baseTree);
 
-			// FIXME: Update Header
-			// add proper abstract fields to fix the header properly
+			// Update Header
 			ProjectSettingsHeader header = baseTree.Q<ProjectSettingsHeader>("Header");
 			header.text = HeaderText;
 			header.HelpUrl = HelpUrl;
 
 			// Populate the body with settings info
 			VisualElement body = baseTree.Q<VisualElement>("Body");
-			VisualElement bodyContent = (ActiveSettings != null) ? GetEditSettingsTree() : GetCreateSettingsTree();
-			body.Add(bodyContent);
+			BodyContent = (ActiveSettings != null) ? GetEditSettingsTree() : GetCreateSettingsTree();
+			body.Add(BodyContent);
 		}
 
 		/// <summary>
