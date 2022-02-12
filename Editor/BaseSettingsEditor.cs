@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEditor.AddressableAssets;
+using UnityEditor.AddressableAssets.Settings;
 using OmiyaGames.Common.Editor;
 
 namespace OmiyaGames.Global.Settings.Editor
@@ -71,6 +73,8 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// <seealso cref="SettingsProvider(string, SettingsScope, System.Collections.Generic.IEnumerable{string})"/>.
 		protected BaseSettingsEditor(string sidebarDisplayName) : base(sidebarDisplayName, SettingsScope.Project) { }
 
+		public abstract string AddressableGroupName { get; }
+		public abstract string AddressableLabel { get; }
 		/// <summary>
 		/// The name the settings asset will be in project via
 		/// <seealso cref="EditorBuildSettings.AddConfigObject(string, Object, bool)"/>
@@ -124,7 +128,7 @@ namespace OmiyaGames.Global.Settings.Editor
 				EditorBuildSettings.TryGetConfigObject(ConfigName, out TData settings);
 				return settings;
 			}
-			set
+			private set
 			{
 				// Update the editor build settings
 				if (value == null)
@@ -159,20 +163,51 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// <returns></returns>
 		public virtual void CreateNewSettings(ClickEvent _ = null)
 		{
+			const string PROGRESS_TITLE = "Creating Settings";
+			float GetProgress(int step) => Mathf.Clamp01(((float)step) / 5f);
+
 			// Open the dialog for creating a new file
 			string filePath = EditorUtility.SaveFilePanelInProject(CreateNewSettingsDialogTitle, DefaultSettingsFileName, FILE_EXTENSION, SaveSettingsMsg);
 
 			// Check if the user didn't cancel
 			if (string.IsNullOrEmpty(filePath) == false)
 			{
+				// Start progress bar
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Creating New File...", GetProgress(0));
+
 				// Attempt to create the settings folder
 				TData returnSettings = ScriptableObject.CreateInstance<TData>();
 				returnSettings.name = DefaultSettingsFileName;
 				AssetDatabase.CreateAsset(returnSettings, filePath);
 
 				// Save the asset to the project
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Saving Asset...", GetProgress(1));
 				AssetDatabase.SaveAssetIfDirty(returnSettings);
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Update Editor Settings...", GetProgress(2));
 				ActiveSettings = returnSettings;
+
+				// Attempt to get an addressable group
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Get Addressable Group...", GetProgress(3));
+				AddressableAssetSettings addressableSettings = AddressableAssetSettingsDefaultObject.Settings;
+				AddressableAssetGroup addressableGroup = addressableSettings.FindGroup(AddressableGroupName);
+				if(addressableGroup == null)
+				{
+					// Group not found, create a new read-only group
+					EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Create New Addressable Group...", GetProgress(4));
+					addressableGroup = addressableSettings.CreateGroup(AddressableGroupName, false, true, false, addressableSettings.DefaultGroup.Schemas);
+					addressableSettings.SetDirty(AddressableAssetSettings.ModificationEvent.GroupAdded, addressableGroup, true);
+				}
+
+				// Add the asset to the group
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Create New Addressable File...", GetProgress(5));
+				string sourceGuid = AssetDatabase.AssetPathToGUID(filePath);
+				AddressableAssetEntry entry = addressableSettings.CreateOrMoveEntry(sourceGuid, addressableGroup, true);
+				entry.address = filePath;
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Update Addressables UI...", GetProgress(6));
+				addressableSettings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, entry, true);
+
+				// Close progress bar
+				EditorUtility.ClearProgressBar();
 			}
 		}
 
