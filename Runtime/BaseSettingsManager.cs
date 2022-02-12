@@ -131,9 +131,9 @@ namespace OmiyaGames.Global.Settings
 		}
 
 		/// <summary>
-		/// Gets the path name of data, as an addessable.
+		/// Gets the name of the manager setting's addessable.
 		/// </summary>
-		protected abstract string DataPath
+		protected abstract string AddressableName
 		{
 			get;
 		}
@@ -145,7 +145,7 @@ namespace OmiyaGames.Global.Settings
 		protected virtual IEnumerator OnSetup()
 		{
 			// Attempt to grab a reference to the data
-			loadDataHandle = Addressables.LoadAssetAsync<TData>(DataPath);
+			loadDataHandle = Addressables.LoadAssetAsync<TData>(AddressableName);
 
 			// Wait until it's done loading
 			yield return loadDataHandle;

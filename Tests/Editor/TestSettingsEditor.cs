@@ -14,9 +14,9 @@ namespace OmiyaGames.Global.Settings.Editor.Tests
 		public TestSettingsEditor(string sidebarDisplayName) : base(sidebarDisplayName) { }
 
 		/// <inheritdoc/>
-		public override string AddressableGroupName => "Omiya Games - Global Settings";
+		public override string AddressableGroupName => SettingsEditorHelpers.OMIYA_GAMES_GROUP_NAME;
 		/// <inheritdoc/>
-		public override string AddressableLabel => "TestSettings";
+		public override string AddressableName => TestSettingsManager.ADDRESSABLE_NAME;
 		/// <inheritdoc/>
 		public override string ConfigName => "com.omiyagames.global.settings.tests";
 

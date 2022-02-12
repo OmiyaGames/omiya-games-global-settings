@@ -49,6 +49,7 @@ namespace OmiyaGames.Global.Settings.Editor
 	/// </summary>
 	public static class SettingsEditorHelpers
 	{
+		public const string OMIYA_GAMES_GROUP_NAME = "Omiya Games - Global Settings";
 		/// <summary>
 		/// Recursively hides elements who's label does not
 		/// match the string in <paramref name="searchContext"/>.

@@ -74,7 +74,7 @@ namespace OmiyaGames.Global.Settings.Editor
 		protected BaseSettingsEditor(string sidebarDisplayName) : base(sidebarDisplayName, SettingsScope.Project) { }
 
 		public abstract string AddressableGroupName { get; }
-		public abstract string AddressableLabel { get; }
+		public abstract string AddressableName { get; }
 		/// <summary>
 		/// The name the settings asset will be in project via
 		/// <seealso cref="EditorBuildSettings.AddConfigObject(string, Object, bool)"/>
@@ -202,7 +202,7 @@ namespace OmiyaGames.Global.Settings.Editor
 				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Create New Addressable File...", GetProgress(5));
 				string sourceGuid = AssetDatabase.AssetPathToGUID(filePath);
 				AddressableAssetEntry entry = addressableSettings.CreateOrMoveEntry(sourceGuid, addressableGroup, true);
-				entry.address = filePath;
+				entry.address = AddressableName;
 				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Update Addressables UI...", GetProgress(6));
 				addressableSettings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, entry, true);
 

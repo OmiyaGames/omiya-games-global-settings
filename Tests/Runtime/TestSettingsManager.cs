@@ -6,6 +6,7 @@ namespace OmiyaGames.Global.Settings.Tests
 {
 	public class TestSettingsManager : BaseSettingsManager<TestSettingsManager, TestSettingsData>
 	{
-		protected override string DataPath => "Assets/Settings/Test";
+		public const string ADDRESSABLE_NAME = "TestSettings";
+		protected override string AddressableName => ADDRESSABLE_NAME;
 	}
 }
