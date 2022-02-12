@@ -126,6 +126,7 @@ namespace OmiyaGames.Global.Settings.Editor
 			}
 			set
 			{
+				// Update the editor build settings
 				if (value == null)
 				{
 					EditorBuildSettings.RemoveConfigObject(ConfigName);
@@ -134,6 +135,10 @@ namespace OmiyaGames.Global.Settings.Editor
 				{
 					EditorBuildSettings.AddConfigObject(ConfigName, value, true);
 				}
+
+				// Update UI
+				UpdateBodyContent(value);
+				Repaint();
 			}
 		}
 		/// <summary>
@@ -168,14 +173,6 @@ namespace OmiyaGames.Global.Settings.Editor
 				// Save the asset to the project
 				AssetDatabase.SaveAssetIfDirty(returnSettings);
 				ActiveSettings = returnSettings;
-
-				// Redraw this UI
-				if(BodyContent != null)
-				{
-					BodyContent.Clear();
-					BodyContent.Add(GetEditSettingsTree());
-					Repaint();
-				}
 			}
 		}
 
@@ -193,9 +190,8 @@ namespace OmiyaGames.Global.Settings.Editor
 			header.HelpUrl = HelpUrl;
 
 			// Populate the body with settings info
-			VisualElement body = baseTree.Q<VisualElement>("Body");
-			BodyContent = (ActiveSettings != null) ? GetEditSettingsTree() : GetCreateSettingsTree();
-			body.Add(BodyContent);
+			BodyContent = baseTree.Q<VisualElement>("Body");
+			UpdateBodyContent(ActiveSettings);
 		}
 
 		/// <summary>
@@ -215,6 +211,7 @@ namespace OmiyaGames.Global.Settings.Editor
 			return returnTree;
 		}
 
+		#region Helper Methods
 		/// <summary>
 		/// Creates a <see cref="VisualElement"/> tree
 		/// displaying message to create a settings asset.
@@ -241,5 +238,18 @@ namespace OmiyaGames.Global.Settings.Editor
 			createButton.RegisterCallback<ClickEvent>(CreateNewSettings);
 			return returnTree;
 		}
+
+		void UpdateBodyContent(TData activeSetting)
+		{
+			// Redraw this UI
+			if(BodyContent != null)
+			{
+				VisualElement newbody = (activeSetting != null) ? GetEditSettingsTree() : GetCreateSettingsTree();
+
+				BodyContent.Clear();
+				BodyContent.Add(newbody);
+			}
+		}
+		#endregion
 	}
 }
