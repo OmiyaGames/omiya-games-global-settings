@@ -76,43 +76,37 @@ namespace OmiyaGames.Global.Settings
 		/// Grabs the static instance of this manager.
 		/// </summary>
 		/// <seealso cref="Data"/>
-		protected static TManager Instance
+		protected static TManager GetInstance()
 		{
-			get
+			TManager returnInstance = ComponentSingleton<TManager>.Get(true, out bool isFirstTimeCreated);
+			if (isFirstTimeCreated)
 			{
-				TManager returnInstance = ComponentSingleton<TManager>.Get(true, out bool isFirstTimeCreated);
-				if (isFirstTimeCreated)
-				{
-					returnInstance.StartCoroutine(returnInstance.OnSetup());
-				}
-				return returnInstance;
+				returnInstance.StartCoroutine(returnInstance.OnSetup());
 			}
+			return returnInstance;
 		}
 
 		/// <summary>
 		/// Grabs the project settings data.
 		/// </summary>
-		/// <seealso cref="Instance"/>
+		/// <seealso cref="GetInstance()"/>
 		/// <seealso cref="IsReady"/>
-		protected static TData Data => Instance.data;
+		protected static TData GetData() => GetInstance().data;
 
 		/// <summary>
 		/// Current status of whether
 		/// data for this manager has been loaded or not
 		/// </summary>
-		public static DataHelper.Status DataStatus
+		public static DataHelper.Status GetDataStatus()
 		{
-			get
+			switch (GetInstance().loadDataHandle.Status)
 			{
-				switch (Instance.loadDataHandle.Status)
-				{
-					case AsyncOperationStatus.Succeeded:
-						return DataHelper.Status.RetrievedProjectData;
-					case AsyncOperationStatus.Failed:
-						return DataHelper.Status.UsingDefaultData;
-					default:
-						return DataHelper.Status.NowLoading;
-				}
+				case AsyncOperationStatus.Succeeded:
+					return DataHelper.Status.RetrievedProjectData;
+				case AsyncOperationStatus.Failed:
+					return DataHelper.Status.UsingDefaultData;
+				default:
+					return DataHelper.Status.NowLoading;
 			}
 		}
 
@@ -123,7 +117,7 @@ namespace OmiyaGames.Global.Settings
 		/// <seealso cref="IsReady"/>
 		public static IEnumerator WaitUntilReady()
 		{
-			TManager check = Instance;
+			TManager check = GetInstance();
 			while (check.data == null)
 			{
 				yield return null;
@@ -169,7 +163,7 @@ namespace OmiyaGames.Global.Settings
 		protected virtual void OnDestroy()
 		{
 			// Destroy default data
-			if (DataStatus == DataHelper.Status.UsingDefaultData)
+			if (GetDataStatus() == DataHelper.Status.UsingDefaultData)
 			{
 				Destroy(data);
 			}

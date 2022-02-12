@@ -71,9 +71,16 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// Project Settings window.
 		/// </param>
 		/// <seealso cref="SettingsProvider(string, SettingsScope, System.Collections.Generic.IEnumerable{string})"/>.
-		protected BaseSettingsEditor(string sidebarDisplayName) : base(sidebarDisplayName, SettingsScope.Project) { }
+		protected BaseSettingsEditor(string sidebarDisplayName, System.Collections.Generic.IEnumerable<string> keywords = null) : base(sidebarDisplayName, SettingsScope.Project, keywords) { }
 
+		/// <summary>
+		/// The name of the group the addressable will be placed under.
+		/// </summary>
 		public abstract string AddressableGroupName { get; }
+		/// <summary>
+		/// The name of the addressable.  This can be loaded from
+		/// <seealso cref"Addressables.LoadAssetAsync{TData}(string)">
+		/// </summary>
 		public abstract string AddressableName { get; }
 		/// <summary>
 		/// The name the settings asset will be in project via

@@ -40,7 +40,7 @@ namespace OmiyaGames.Global.Settings.Tests
 			yield return TestSettingsManager.WaitUntilReady();
 
 			// Check if the default data is being used by TestSettingsManager.
-			Assert.AreEqual(expectedStatus, TestSettingsManager.DataStatus);
+			Assert.AreEqual(expectedStatus, TestSettingsManager.GetDataStatus());
 			ComponentSingleton<TestSettingsManager>.Release();
 		}
 	}
