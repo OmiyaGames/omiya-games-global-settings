@@ -1,0 +1,613 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: OmiyaGames.Global.Settings
+  name: OmiyaGames.Global.Settings
+  href: api/OmiyaGames.Global.Settings.html
+  commentId: N:OmiyaGames.Global.Settings
+  fullName: OmiyaGames.Global.Settings
+  nameWithType: OmiyaGames.Global.Settings
+- uid: OmiyaGames.Global.Settings.BaseSettingsData
+  name: BaseSettingsData
+  href: api/OmiyaGames.Global.Settings.BaseSettingsData.html
+  commentId: T:OmiyaGames.Global.Settings.BaseSettingsData
+  fullName: OmiyaGames.Global.Settings.BaseSettingsData
+  nameWithType: BaseSettingsData
+- uid: OmiyaGames.Global.Settings.BaseSettingsData.CurrentVersion
+  name: CurrentVersion
+  href: api/OmiyaGames.Global.Settings.BaseSettingsData.html#OmiyaGames_Global_Settings_BaseSettingsData_CurrentVersion
+  commentId: P:OmiyaGames.Global.Settings.BaseSettingsData.CurrentVersion
+  fullName: OmiyaGames.Global.Settings.BaseSettingsData.CurrentVersion
+  nameWithType: BaseSettingsData.CurrentVersion
+- uid: OmiyaGames.Global.Settings.BaseSettingsData.CurrentVersion*
+  name: CurrentVersion
+  href: api/OmiyaGames.Global.Settings.BaseSettingsData.html#OmiyaGames_Global_Settings_BaseSettingsData_CurrentVersion_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsData.CurrentVersion
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsData.CurrentVersion
+  nameWithType: BaseSettingsData.CurrentVersion
+- uid: OmiyaGames.Global.Settings.BaseSettingsData.OnAfterDeserialize
+  name: OnAfterDeserialize()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsData.html#OmiyaGames_Global_Settings_BaseSettingsData_OnAfterDeserialize
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsData.OnAfterDeserialize
+  fullName: OmiyaGames.Global.Settings.BaseSettingsData.OnAfterDeserialize()
+  nameWithType: BaseSettingsData.OnAfterDeserialize()
+- uid: OmiyaGames.Global.Settings.BaseSettingsData.OnAfterDeserialize*
+  name: OnAfterDeserialize
+  href: api/OmiyaGames.Global.Settings.BaseSettingsData.html#OmiyaGames_Global_Settings_BaseSettingsData_OnAfterDeserialize_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsData.OnAfterDeserialize
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsData.OnAfterDeserialize
+  nameWithType: BaseSettingsData.OnAfterDeserialize
+- uid: OmiyaGames.Global.Settings.BaseSettingsData.OnBeforeSerialize
+  name: OnBeforeSerialize()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsData.html#OmiyaGames_Global_Settings_BaseSettingsData_OnBeforeSerialize
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsData.OnBeforeSerialize
+  fullName: OmiyaGames.Global.Settings.BaseSettingsData.OnBeforeSerialize()
+  nameWithType: BaseSettingsData.OnBeforeSerialize()
+- uid: OmiyaGames.Global.Settings.BaseSettingsData.OnBeforeSerialize*
+  name: OnBeforeSerialize
+  href: api/OmiyaGames.Global.Settings.BaseSettingsData.html#OmiyaGames_Global_Settings_BaseSettingsData_OnBeforeSerialize_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsData.OnBeforeSerialize
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsData.OnBeforeSerialize
+  nameWithType: BaseSettingsData.OnBeforeSerialize
+- uid: OmiyaGames.Global.Settings.BaseSettingsData.OnUpgrade(System.Int32,System.String@)
+  name: OnUpgrade(Int32, out String)
+  href: api/OmiyaGames.Global.Settings.BaseSettingsData.html#OmiyaGames_Global_Settings_BaseSettingsData_OnUpgrade_System_Int32_System_String__
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsData.OnUpgrade(System.Int32,System.String@)
+  name.vb: OnUpgrade(Int32, ByRef String)
+  fullName: OmiyaGames.Global.Settings.BaseSettingsData.OnUpgrade(System.Int32, out System.String)
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsData.OnUpgrade(System.Int32, ByRef System.String)
+  nameWithType: BaseSettingsData.OnUpgrade(Int32, out String)
+  nameWithType.vb: BaseSettingsData.OnUpgrade(Int32, ByRef String)
+- uid: OmiyaGames.Global.Settings.BaseSettingsData.OnUpgrade*
+  name: OnUpgrade
+  href: api/OmiyaGames.Global.Settings.BaseSettingsData.html#OmiyaGames_Global_Settings_BaseSettingsData_OnUpgrade_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsData.OnUpgrade
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsData.OnUpgrade
+  nameWithType: BaseSettingsData.OnUpgrade
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2
+  name: BaseSettingsManager<TManager, TData>
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html
+  commentId: T:OmiyaGames.Global.Settings.BaseSettingsManager`2
+  name.vb: BaseSettingsManager(Of TManager, TData)
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData)
+  nameWithType: BaseSettingsManager<TManager, TData>
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData)
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.AddressableName
+  name: AddressableName
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_AddressableName
+  commentId: P:OmiyaGames.Global.Settings.BaseSettingsManager`2.AddressableName
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.AddressableName
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).AddressableName
+  nameWithType: BaseSettingsManager<TManager, TData>.AddressableName
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).AddressableName
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.AddressableName*
+  name: AddressableName
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_AddressableName_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.AddressableName
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.AddressableName
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).AddressableName
+  nameWithType: BaseSettingsManager<TManager, TData>.AddressableName
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).AddressableName
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetData
+  name: GetData()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetData
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetData
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetData()
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetData()
+  nameWithType: BaseSettingsManager<TManager, TData>.GetData()
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetData()
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetData*
+  name: GetData
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetData_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetData
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetData
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetData
+  nameWithType: BaseSettingsManager<TManager, TData>.GetData
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetData
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataStatus
+  name: GetDataStatus()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataStatus
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataStatus
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetDataStatus()
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetDataStatus()
+  nameWithType: BaseSettingsManager<TManager, TData>.GetDataStatus()
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetDataStatus()
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataStatus*
+  name: GetDataStatus
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataStatus_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataStatus
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetDataStatus
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetDataStatus
+  nameWithType: BaseSettingsManager<TManager, TData>.GetDataStatus
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetDataStatus
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstance
+  name: GetInstance()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstance
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstance
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetInstance()
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetInstance()
+  nameWithType: BaseSettingsManager<TManager, TData>.GetInstance()
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetInstance()
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstance*
+  name: GetInstance
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstance_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstance
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetInstance
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetInstance
+  nameWithType: BaseSettingsManager<TManager, TData>.GetInstance
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetInstance
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.OnDestroy
+  name: OnDestroy()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_OnDestroy
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.OnDestroy
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.OnDestroy()
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).OnDestroy()
+  nameWithType: BaseSettingsManager<TManager, TData>.OnDestroy()
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).OnDestroy()
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.OnDestroy*
+  name: OnDestroy
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_OnDestroy_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.OnDestroy
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.OnDestroy
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).OnDestroy
+  nameWithType: BaseSettingsManager<TManager, TData>.OnDestroy
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).OnDestroy
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.OnSetup
+  name: OnSetup()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_OnSetup
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.OnSetup
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.OnSetup()
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).OnSetup()
+  nameWithType: BaseSettingsManager<TManager, TData>.OnSetup()
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).OnSetup()
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.OnSetup*
+  name: OnSetup
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_OnSetup_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.OnSetup
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.OnSetup
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).OnSetup
+  nameWithType: BaseSettingsManager<TManager, TData>.OnSetup
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).OnSetup
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady
+  name: WaitUntilReady()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_WaitUntilReady
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.WaitUntilReady()
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).WaitUntilReady()
+  nameWithType: BaseSettingsManager<TManager, TData>.WaitUntilReady()
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).WaitUntilReady()
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady*
+  name: WaitUntilReady
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_WaitUntilReady_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.WaitUntilReady
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).WaitUntilReady
+  nameWithType: BaseSettingsManager<TManager, TData>.WaitUntilReady
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).WaitUntilReady
+- uid: OmiyaGames.Global.Settings.Data
+  name: Data
+  href: api/OmiyaGames.Global.Settings.Data.html
+  commentId: T:OmiyaGames.Global.Settings.Data
+  fullName: OmiyaGames.Global.Settings.Data
+  nameWithType: Data
+- uid: OmiyaGames.Global.Settings.Data.Status
+  name: Data.Status
+  href: api/OmiyaGames.Global.Settings.Data.Status.html
+  commentId: T:OmiyaGames.Global.Settings.Data.Status
+  fullName: OmiyaGames.Global.Settings.Data.Status
+  nameWithType: Data.Status
+- uid: OmiyaGames.Global.Settings.Data.Status.NowLoading
+  name: NowLoading
+  href: api/OmiyaGames.Global.Settings.Data.Status.html#OmiyaGames_Global_Settings_Data_Status_NowLoading
+  commentId: F:OmiyaGames.Global.Settings.Data.Status.NowLoading
+  fullName: OmiyaGames.Global.Settings.Data.Status.NowLoading
+  nameWithType: Data.Status.NowLoading
+- uid: OmiyaGames.Global.Settings.Data.Status.RetrievedProjectData
+  name: RetrievedProjectData
+  href: api/OmiyaGames.Global.Settings.Data.Status.html#OmiyaGames_Global_Settings_Data_Status_RetrievedProjectData
+  commentId: F:OmiyaGames.Global.Settings.Data.Status.RetrievedProjectData
+  fullName: OmiyaGames.Global.Settings.Data.Status.RetrievedProjectData
+  nameWithType: Data.Status.RetrievedProjectData
+- uid: OmiyaGames.Global.Settings.Data.Status.UsingDefaultData
+  name: UsingDefaultData
+  href: api/OmiyaGames.Global.Settings.Data.Status.html#OmiyaGames_Global_Settings_Data_Status_UsingDefaultData
+  commentId: F:OmiyaGames.Global.Settings.Data.Status.UsingDefaultData
+  fullName: OmiyaGames.Global.Settings.Data.Status.UsingDefaultData
+  nameWithType: Data.Status.UsingDefaultData
+- uid: OmiyaGames.Global.Settings.Editor
+  name: OmiyaGames.Global.Settings.Editor
+  href: api/OmiyaGames.Global.Settings.Editor.html
+  commentId: N:OmiyaGames.Global.Settings.Editor
+  fullName: OmiyaGames.Global.Settings.Editor
+  nameWithType: OmiyaGames.Global.Settings.Editor
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1
+  name: BaseSettingsBuilder<TData>
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder-1.html
+  commentId: T:OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1
+  name.vb: BaseSettingsBuilder(Of TData)
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder<TData>
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder(Of TData)
+  nameWithType: BaseSettingsBuilder<TData>
+  nameWithType.vb: BaseSettingsBuilder(Of TData)
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.callbackOrder
+  name: callbackOrder
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsBuilder_1_callbackOrder
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.callbackOrder
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder<TData>.callbackOrder
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder(Of TData).callbackOrder
+  nameWithType: BaseSettingsBuilder<TData>.callbackOrder
+  nameWithType.vb: BaseSettingsBuilder(Of TData).callbackOrder
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.callbackOrder*
+  name: callbackOrder
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsBuilder_1_callbackOrder_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.callbackOrder
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder<TData>.callbackOrder
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder(Of TData).callbackOrder
+  nameWithType: BaseSettingsBuilder<TData>.callbackOrder
+  nameWithType.vb: BaseSettingsBuilder(Of TData).callbackOrder
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.ConfigName
+  name: ConfigName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsBuilder_1_ConfigName
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.ConfigName
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder<TData>.ConfigName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder(Of TData).ConfigName
+  nameWithType: BaseSettingsBuilder<TData>.ConfigName
+  nameWithType.vb: BaseSettingsBuilder(Of TData).ConfigName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.ConfigName*
+  name: ConfigName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsBuilder_1_ConfigName_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.ConfigName
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder<TData>.ConfigName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder(Of TData).ConfigName
+  nameWithType: BaseSettingsBuilder<TData>.ConfigName
+  nameWithType.vb: BaseSettingsBuilder(Of TData).ConfigName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.OnPostprocessBuild(BuildReport)
+  name: OnPostprocessBuild(BuildReport)
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsBuilder_1_OnPostprocessBuild_BuildReport_
+  commentId: M:OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.OnPostprocessBuild(BuildReport)
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder<TData>.OnPostprocessBuild(BuildReport)
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder(Of TData).OnPostprocessBuild(BuildReport)
+  nameWithType: BaseSettingsBuilder<TData>.OnPostprocessBuild(BuildReport)
+  nameWithType.vb: BaseSettingsBuilder(Of TData).OnPostprocessBuild(BuildReport)
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.OnPostprocessBuild*
+  name: OnPostprocessBuild
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsBuilder_1_OnPostprocessBuild_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.OnPostprocessBuild
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder<TData>.OnPostprocessBuild
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder(Of TData).OnPostprocessBuild
+  nameWithType: BaseSettingsBuilder<TData>.OnPostprocessBuild
+  nameWithType.vb: BaseSettingsBuilder(Of TData).OnPostprocessBuild
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.OnPreprocessBuild(BuildReport)
+  name: OnPreprocessBuild(BuildReport)
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsBuilder_1_OnPreprocessBuild_BuildReport_
+  commentId: M:OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.OnPreprocessBuild(BuildReport)
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder<TData>.OnPreprocessBuild(BuildReport)
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder(Of TData).OnPreprocessBuild(BuildReport)
+  nameWithType: BaseSettingsBuilder<TData>.OnPreprocessBuild(BuildReport)
+  nameWithType.vb: BaseSettingsBuilder(Of TData).OnPreprocessBuild(BuildReport)
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.OnPreprocessBuild*
+  name: OnPreprocessBuild
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsBuilder_1_OnPreprocessBuild_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder`1.OnPreprocessBuild
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder<TData>.OnPreprocessBuild
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsBuilder(Of TData).OnPreprocessBuild
+  nameWithType: BaseSettingsBuilder<TData>.OnPreprocessBuild
+  nameWithType.vb: BaseSettingsBuilder(Of TData).OnPreprocessBuild
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1
+  name: BaseSettingsEditor<TData>
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html
+  commentId: T:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1
+  name.vb: BaseSettingsEditor(Of TData)
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData)
+  nameWithType: BaseSettingsEditor<TData>
+  nameWithType.vb: BaseSettingsEditor(Of TData)
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.#ctor(System.String,System.Collections.Generic.IEnumerable{System.String})
+  name: BaseSettingsEditor(String, IEnumerable<String>)
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1__ctor_System_String_System_Collections_Generic_IEnumerable_System_String__
+  commentId: M:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.#ctor(System.String,System.Collections.Generic.IEnumerable{System.String})
+  name.vb: BaseSettingsEditor(String, IEnumerable(Of String))
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.BaseSettingsEditor(System.String, System.Collections.Generic.IEnumerable<System.String>)
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).BaseSettingsEditor(System.String, System.Collections.Generic.IEnumerable(Of System.String))
+  nameWithType: BaseSettingsEditor<TData>.BaseSettingsEditor(String, IEnumerable<String>)
+  nameWithType.vb: BaseSettingsEditor(Of TData).BaseSettingsEditor(String, IEnumerable(Of String))
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.#ctor*
+  name: BaseSettingsEditor
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1__ctor_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.#ctor
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.BaseSettingsEditor
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).BaseSettingsEditor
+  nameWithType: BaseSettingsEditor<TData>.BaseSettingsEditor
+  nameWithType.vb: BaseSettingsEditor(Of TData).BaseSettingsEditor
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.ActiveSettings
+  name: ActiveSettings
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_ActiveSettings
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.ActiveSettings
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.ActiveSettings
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).ActiveSettings
+  nameWithType: BaseSettingsEditor<TData>.ActiveSettings
+  nameWithType.vb: BaseSettingsEditor(Of TData).ActiveSettings
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.ActiveSettings*
+  name: ActiveSettings
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_ActiveSettings_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.ActiveSettings
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.ActiveSettings
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).ActiveSettings
+  nameWithType: BaseSettingsEditor<TData>.ActiveSettings
+  nameWithType.vb: BaseSettingsEditor(Of TData).ActiveSettings
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.AddressableGroupName
+  name: AddressableGroupName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_AddressableGroupName
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.AddressableGroupName
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.AddressableGroupName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).AddressableGroupName
+  nameWithType: BaseSettingsEditor<TData>.AddressableGroupName
+  nameWithType.vb: BaseSettingsEditor(Of TData).AddressableGroupName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.AddressableGroupName*
+  name: AddressableGroupName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_AddressableGroupName_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.AddressableGroupName
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.AddressableGroupName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).AddressableGroupName
+  nameWithType: BaseSettingsEditor<TData>.AddressableGroupName
+  nameWithType.vb: BaseSettingsEditor(Of TData).AddressableGroupName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.AddressableName
+  name: AddressableName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_AddressableName
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.AddressableName
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.AddressableName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).AddressableName
+  nameWithType: BaseSettingsEditor<TData>.AddressableName
+  nameWithType.vb: BaseSettingsEditor(Of TData).AddressableName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.AddressableName*
+  name: AddressableName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_AddressableName_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.AddressableName
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.AddressableName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).AddressableName
+  nameWithType: BaseSettingsEditor<TData>.AddressableName
+  nameWithType.vb: BaseSettingsEditor(Of TData).AddressableName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.BodyContent
+  name: BodyContent
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_BodyContent
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.BodyContent
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.BodyContent
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).BodyContent
+  nameWithType: BaseSettingsEditor<TData>.BodyContent
+  nameWithType.vb: BaseSettingsEditor(Of TData).BodyContent
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.BodyContent*
+  name: BodyContent
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_BodyContent_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.BodyContent
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.BodyContent
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).BodyContent
+  nameWithType: BaseSettingsEditor<TData>.BodyContent
+  nameWithType.vb: BaseSettingsEditor(Of TData).BodyContent
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.ConfigName
+  name: ConfigName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_ConfigName
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.ConfigName
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.ConfigName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).ConfigName
+  nameWithType: BaseSettingsEditor<TData>.ConfigName
+  nameWithType.vb: BaseSettingsEditor(Of TData).ConfigName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.ConfigName*
+  name: ConfigName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_ConfigName_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.ConfigName
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.ConfigName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).ConfigName
+  nameWithType: BaseSettingsEditor<TData>.ConfigName
+  nameWithType.vb: BaseSettingsEditor(Of TData).ConfigName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettings(ClickEvent)
+  name: CreateNewSettings(ClickEvent)
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CreateNewSettings_ClickEvent_
+  commentId: M:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettings(ClickEvent)
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.CreateNewSettings(ClickEvent)
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).CreateNewSettings(ClickEvent)
+  nameWithType: BaseSettingsEditor<TData>.CreateNewSettings(ClickEvent)
+  nameWithType.vb: BaseSettingsEditor(Of TData).CreateNewSettings(ClickEvent)
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettings*
+  name: CreateNewSettings
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CreateNewSettings_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettings
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.CreateNewSettings
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).CreateNewSettings
+  nameWithType: BaseSettingsEditor<TData>.CreateNewSettings
+  nameWithType.vb: BaseSettingsEditor(Of TData).CreateNewSettings
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettingsDialogTitle
+  name: CreateNewSettingsDialogTitle
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CreateNewSettingsDialogTitle
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettingsDialogTitle
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.CreateNewSettingsDialogTitle
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).CreateNewSettingsDialogTitle
+  nameWithType: BaseSettingsEditor<TData>.CreateNewSettingsDialogTitle
+  nameWithType.vb: BaseSettingsEditor(Of TData).CreateNewSettingsDialogTitle
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettingsDialogTitle*
+  name: CreateNewSettingsDialogTitle
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CreateNewSettingsDialogTitle_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettingsDialogTitle
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.CreateNewSettingsDialogTitle
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).CreateNewSettingsDialogTitle
+  nameWithType: BaseSettingsEditor<TData>.CreateNewSettingsDialogTitle
+  nameWithType.vb: BaseSettingsEditor(Of TData).CreateNewSettingsDialogTitle
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.DefaultSettingsFileName
+  name: DefaultSettingsFileName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_DefaultSettingsFileName
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.DefaultSettingsFileName
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.DefaultSettingsFileName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).DefaultSettingsFileName
+  nameWithType: BaseSettingsEditor<TData>.DefaultSettingsFileName
+  nameWithType.vb: BaseSettingsEditor(Of TData).DefaultSettingsFileName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.DefaultSettingsFileName*
+  name: DefaultSettingsFileName
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_DefaultSettingsFileName_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.DefaultSettingsFileName
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.DefaultSettingsFileName
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).DefaultSettingsFileName
+  nameWithType: BaseSettingsEditor<TData>.DefaultSettingsFileName
+  nameWithType.vb: BaseSettingsEditor(Of TData).DefaultSettingsFileName
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.FILE_EXTENSION
+  name: FILE_EXTENSION
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_FILE_EXTENSION
+  commentId: F:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.FILE_EXTENSION
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.FILE_EXTENSION
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).FILE_EXTENSION
+  nameWithType: BaseSettingsEditor<TData>.FILE_EXTENSION
+  nameWithType.vb: BaseSettingsEditor(Of TData).FILE_EXTENSION
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree
+  name: GetEditSettingsTree()
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_GetEditSettingsTree
+  commentId: M:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.GetEditSettingsTree()
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).GetEditSettingsTree()
+  nameWithType: BaseSettingsEditor<TData>.GetEditSettingsTree()
+  nameWithType.vb: BaseSettingsEditor(Of TData).GetEditSettingsTree()
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree*
+  name: GetEditSettingsTree
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_GetEditSettingsTree_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.GetEditSettingsTree
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).GetEditSettingsTree
+  nameWithType: BaseSettingsEditor<TData>.GetEditSettingsTree
+  nameWithType.vb: BaseSettingsEditor(Of TData).GetEditSettingsTree
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.HeaderText
+  name: HeaderText
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_HeaderText
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.HeaderText
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.HeaderText
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).HeaderText
+  nameWithType: BaseSettingsEditor<TData>.HeaderText
+  nameWithType.vb: BaseSettingsEditor(Of TData).HeaderText
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.HeaderText*
+  name: HeaderText
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_HeaderText_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.HeaderText
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.HeaderText
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).HeaderText
+  nameWithType: BaseSettingsEditor<TData>.HeaderText
+  nameWithType.vb: BaseSettingsEditor(Of TData).HeaderText
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.HelpUrl
+  name: HelpUrl
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_HelpUrl
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.HelpUrl
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.HelpUrl
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).HelpUrl
+  nameWithType: BaseSettingsEditor<TData>.HelpUrl
+  nameWithType.vb: BaseSettingsEditor(Of TData).HelpUrl
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.HelpUrl*
+  name: HelpUrl
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_HelpUrl_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.HelpUrl
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.HelpUrl
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).HelpUrl
+  nameWithType: BaseSettingsEditor<TData>.HelpUrl
+  nameWithType.vb: BaseSettingsEditor(Of TData).HelpUrl
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.NoSettingsMsg
+  name: NoSettingsMsg
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_NoSettingsMsg
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.NoSettingsMsg
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.NoSettingsMsg
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).NoSettingsMsg
+  nameWithType: BaseSettingsEditor<TData>.NoSettingsMsg
+  nameWithType.vb: BaseSettingsEditor(Of TData).NoSettingsMsg
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.NoSettingsMsg*
+  name: NoSettingsMsg
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_NoSettingsMsg_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.NoSettingsMsg
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.NoSettingsMsg
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).NoSettingsMsg
+  nameWithType: BaseSettingsEditor<TData>.NoSettingsMsg
+  nameWithType.vb: BaseSettingsEditor(Of TData).NoSettingsMsg
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.OnActivate(System.String,VisualElement)
+  name: OnActivate(String, VisualElement)
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_OnActivate_System_String_VisualElement_
+  commentId: M:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.OnActivate(System.String,VisualElement)
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.OnActivate(System.String, VisualElement)
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).OnActivate(System.String, VisualElement)
+  nameWithType: BaseSettingsEditor<TData>.OnActivate(String, VisualElement)
+  nameWithType.vb: BaseSettingsEditor(Of TData).OnActivate(String, VisualElement)
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.OnActivate*
+  name: OnActivate
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_OnActivate_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.OnActivate
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.OnActivate
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).OnActivate
+  nameWithType: BaseSettingsEditor<TData>.OnActivate
+  nameWithType.vb: BaseSettingsEditor(Of TData).OnActivate
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.SaveSettingsMsg
+  name: SaveSettingsMsg
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_SaveSettingsMsg
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.SaveSettingsMsg
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.SaveSettingsMsg
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).SaveSettingsMsg
+  nameWithType: BaseSettingsEditor<TData>.SaveSettingsMsg
+  nameWithType.vb: BaseSettingsEditor(Of TData).SaveSettingsMsg
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.SaveSettingsMsg*
+  name: SaveSettingsMsg
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_SaveSettingsMsg_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.SaveSettingsMsg
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.SaveSettingsMsg
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).SaveSettingsMsg
+  nameWithType: BaseSettingsEditor<TData>.SaveSettingsMsg
+  nameWithType.vb: BaseSettingsEditor(Of TData).SaveSettingsMsg
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.UxmlPath
+  name: UxmlPath
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_UxmlPath
+  commentId: P:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.UxmlPath
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.UxmlPath
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).UxmlPath
+  nameWithType: BaseSettingsEditor<TData>.UxmlPath
+  nameWithType.vb: BaseSettingsEditor(Of TData).UxmlPath
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.UxmlPath*
+  name: UxmlPath
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_UxmlPath_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.UxmlPath
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.UxmlPath
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).UxmlPath
+  nameWithType: BaseSettingsEditor<TData>.UxmlPath
+  nameWithType.vb: BaseSettingsEditor(Of TData).UxmlPath
+- uid: OmiyaGames.Global.Settings.Editor.SettingsEditorHelpers
+  name: SettingsEditorHelpers
+  href: api/OmiyaGames.Global.Settings.Editor.SettingsEditorHelpers.html
+  commentId: T:OmiyaGames.Global.Settings.Editor.SettingsEditorHelpers
+  fullName: OmiyaGames.Global.Settings.Editor.SettingsEditorHelpers
+  nameWithType: SettingsEditorHelpers
+- uid: OmiyaGames.Global.Settings.Editor.SettingsEditorHelpers.OMIYA_GAMES_GROUP_NAME
+  name: OMIYA_GAMES_GROUP_NAME
+  href: api/OmiyaGames.Global.Settings.Editor.SettingsEditorHelpers.html#OmiyaGames_Global_Settings_Editor_SettingsEditorHelpers_OMIYA_GAMES_GROUP_NAME
+  commentId: F:OmiyaGames.Global.Settings.Editor.SettingsEditorHelpers.OMIYA_GAMES_GROUP_NAME
+  fullName: OmiyaGames.Global.Settings.Editor.SettingsEditorHelpers.OMIYA_GAMES_GROUP_NAME
+  nameWithType: SettingsEditorHelpers.OMIYA_GAMES_GROUP_NAME
