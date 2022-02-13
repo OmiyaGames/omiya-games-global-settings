@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" oge="OmiyaGames.Common.Editor" editor-extension-mode="True">
+	<Style src="project://database/Packages/com.omiyagames.global.settings/Editor/default-style.uss?fileID=7433441132597879392&amp;guid=0096689714a226e4aa40993b2114df84&amp;type=3#default-style" />
+	<ui:Label text="It worked!" display-tooltip-when-elided="true" name="Label" />
+</ui:UXML>
