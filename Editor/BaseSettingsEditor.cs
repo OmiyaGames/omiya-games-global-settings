@@ -223,16 +223,15 @@ namespace OmiyaGames.Global.Settings.Editor
 		{
 			// Import UXML
 			VisualTreeAsset uxmlTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UXML_ROOT_EDITOR_PATH);
-			TemplateContainer baseTree = uxmlTree.CloneTree();
-			rootElement.Add(baseTree);
+			uxmlTree.CloneTree(rootElement);
 
 			// Update Header
-			ProjectSettingsHeader header = baseTree.Q<ProjectSettingsHeader>("Header");
+			ProjectSettingsHeader header = rootElement.Q<ProjectSettingsHeader>("Header");
 			header.text = HeaderText;
 			header.HelpUrl = HelpUrl;
 
 			// Populate the body with settings info
-			BodyContent = baseTree.Q<VisualElement>("Body");
+			BodyContent = rootElement.Q<VisualElement>("Body");
 			UpdateBodyContent(ActiveSettings);
 		}
 
