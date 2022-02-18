@@ -179,6 +179,7 @@ namespace OmiyaGames.Global.Settings.Editor
 			// Check if the user didn't cancel
 			if (string.IsNullOrEmpty(filePath) == false)
 			{
+				// FIXME: refactor this method out for ease of reading.
 				// Start progress bar
 				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Creating New File...", GetProgress(0));
 
@@ -195,6 +196,7 @@ namespace OmiyaGames.Global.Settings.Editor
 
 				// Attempt to get an addressable group
 				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Get Addressable Group...", GetProgress(3));
+				// FIXME: this can be null, thus causing a null reference error.  STRONGLY consider adding instructions to setup addressables first!
 				AddressableAssetSettings addressableSettings = AddressableAssetSettingsDefaultObject.Settings;
 				AddressableAssetGroup addressableGroup = addressableSettings.FindGroup(AddressableGroupName);
 				if(addressableGroup == null)
