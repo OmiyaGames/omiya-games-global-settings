@@ -62,6 +62,7 @@ namespace OmiyaGames.Global.Settings.Editor
 		const string UXML_DIR = "Packages/com.omiyagames.global.settings/Editor/";
 		const string UXML_ROOT_EDITOR_PATH = UXML_DIR + "SettingsEditorRoot.uxml";
 		const string UXML_CREATE_SETTINGS_EDITOR_PATH = UXML_DIR + "CreateSettingsBody.uxml";
+		const string OK = "OK";
 
 		/// <summary>
 		/// Constructs a project-scoped <see cref="SettingsProvider"/>.
@@ -167,11 +168,17 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// Called when the "Create..."
 		/// button is clicked.
 		/// </summary>
-		/// <returns></returns>
 		public virtual void CreateNewSettings(ClickEvent _ = null)
 		{
-			const string PROGRESS_TITLE = "Creating Settings";
-			float GetProgress(int step) => Mathf.Clamp01(((float)step) / 5f);
+			// Attempt to retrieve the addressable settings, first
+			AddressableAssetSettings addressableSettings = AddressableAssetSettingsDefaultObject.Settings;
+			if (addressableSettings == null)
+			{
+				// If none is found, complain
+				EditorUtility.DisplayDialog("Addressables Is Not Setup",
+					"This settings requires Addressables to be setup. Generate Addressable settings first (e.g. by creating localization settings) before creating an Omiya Games settings.", OK);
+				return;
+			}
 
 			// Open the dialog for creating a new file
 			string filePath = EditorUtility.SaveFilePanelInProject(CreateNewSettingsDialogTitle, DefaultSettingsFileName, FILE_EXTENSION, SaveSettingsMsg);
@@ -179,12 +186,50 @@ namespace OmiyaGames.Global.Settings.Editor
 			// Check if the user didn't cancel
 			if (string.IsNullOrEmpty(filePath) == false)
 			{
-				// FIXME: refactor this method out for ease of reading.
-				// Start progress bar
-				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Creating New File...", GetProgress(0));
+				// Create the new settings
+				CreateNewSettingsAt(filePath, addressableSettings);
+			}
+		}
 
+		/// <summary>
+		/// Creates a new instance of
+		/// <typeparamref name="TData"/>.
+		/// Called when the "Create..."
+		/// button is clicked.
+		/// </summary>
+		/// <param name="filePath">
+		/// The path to create the new file in.
+		/// </param>
+		/// <param name="addressableSettings">
+		/// The addressable settings.
+		/// </param>
+		/// <exception cref="System.ArgumentNullException">
+		/// If either arguments are null or if
+		/// <paramref name="filePath"/> is empty string.
+		/// </exception>
+		protected virtual void CreateNewSettingsAt(string filePath, AddressableAssetSettings addressableSettings)
+		{
+			if (string.IsNullOrEmpty(filePath))
+			{
+				throw new System.ArgumentNullException("addressableSettings");
+			}
+			else if (addressableSettings == null)
+			{
+				throw new System.ArgumentNullException("addressableSettings");
+			}
+
+			// Setup some helper methods
+			const string PROGRESS_TITLE = "Creating Settings";
+			float GetProgress(int step) => Mathf.Clamp01(((float)step) / 5f);
+
+			// Start progress bar
+			EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Creating New File...", GetProgress(0));
+			TData returnSettings = null;
+
+			try
+			{
 				// Attempt to create the settings folder
-				TData returnSettings = ScriptableObject.CreateInstance<TData>();
+				returnSettings = ScriptableObject.CreateInstance<TData>();
 				returnSettings.name = DefaultSettingsFileName;
 				AssetDatabase.CreateAsset(returnSettings, filePath);
 
@@ -196,10 +241,8 @@ namespace OmiyaGames.Global.Settings.Editor
 
 				// Attempt to get an addressable group
 				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Get Addressable Group...", GetProgress(3));
-				// FIXME: this can be null, thus causing a null reference error.  STRONGLY consider adding instructions to setup addressables first!
-				AddressableAssetSettings addressableSettings = AddressableAssetSettingsDefaultObject.Settings;
 				AddressableAssetGroup addressableGroup = addressableSettings.FindGroup(AddressableGroupName);
-				if(addressableGroup == null)
+				if (addressableGroup == null)
 				{
 					// Group not found, create a new read-only group
 					EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Create New Addressable Group...", GetProgress(4));
@@ -217,6 +260,23 @@ namespace OmiyaGames.Global.Settings.Editor
 
 				// Close progress bar
 				EditorUtility.ClearProgressBar();
+			}
+			catch (System.Exception ex)
+			{
+				// Close progress bar
+				EditorUtility.ClearProgressBar();
+
+				if (returnSettings)
+				{
+					// Remove returnSettings data
+					Object.DestroyImmediate(returnSettings);
+					returnSettings = null;
+				}
+
+				// Complain about the exception
+				Debug.LogError(ex);
+				EditorUtility.DisplayDialog("Unable to Create Settings",
+					$"There was an error attempting to create a settings file at \"{filePath}\".  Please confirm you have permissions to write to this path.", OK);
 			}
 		}
 
@@ -285,7 +345,7 @@ namespace OmiyaGames.Global.Settings.Editor
 		void UpdateBodyContent(TData activeSetting)
 		{
 			// Redraw this UI
-			if(BodyContent != null)
+			if (BodyContent != null)
 			{
 				VisualElement newbody = (activeSetting != null) ? GetEditSettingsTree() : GetCreateSettingsTree();
 
