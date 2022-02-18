@@ -175,8 +175,7 @@ namespace OmiyaGames.Global.Settings.Editor
 			if (addressableSettings == null)
 			{
 				// If none is found, complain
-				EditorUtility.DisplayDialog("Addressables Is Not Setup",
-					"This settings requires Addressables to be setup. Generate Addressable settings first (e.g. by creating localization settings) before creating an Omiya Games settings.", OK);
+				WarnAddressableNotSetup();
 				return;
 			}
 
@@ -189,96 +188,6 @@ namespace OmiyaGames.Global.Settings.Editor
 				// Create the new settings
 				CreateNewSettingsAt(filePath, addressableSettings);
 			}
-		}
-
-		/// <summary>
-		/// Creates a new instance of
-		/// <typeparamref name="TData"/>.
-		/// Called when the "Create..."
-		/// button is clicked.
-		/// </summary>
-		/// <param name="filePath">
-		/// The path to create the new file in.
-		/// </param>
-		/// <param name="addressableSettings">
-		/// The addressable settings.
-		/// </param>
-		/// <exception cref="System.ArgumentNullException">
-		/// If either arguments are null or if
-		/// <paramref name="filePath"/> is empty string.
-		/// </exception>
-		protected virtual TData CreateNewSettingsAt(string filePath, AddressableAssetSettings addressableSettings)
-		{
-			if (string.IsNullOrEmpty(filePath))
-			{
-				throw new System.ArgumentNullException("addressableSettings");
-			}
-			else if (addressableSettings == null)
-			{
-				throw new System.ArgumentNullException("addressableSettings");
-			}
-
-			// Setup some helper methods
-			const string PROGRESS_TITLE = "Creating Settings";
-			float GetProgress(int step) => Mathf.Clamp01(((float)step) / 5f);
-			TData returnSettings = null;
-
-			try
-			{
-				// Start progress bar
-				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Creating New File...", GetProgress(0));
-
-				// Attempt to create the settings folder
-				returnSettings = ScriptableObject.CreateInstance<TData>();
-				returnSettings.name = DefaultSettingsFileName;
-				AssetDatabase.CreateAsset(returnSettings, filePath);
-
-				// Save the asset to the project
-				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Saving Asset...", GetProgress(1));
-				AssetDatabase.SaveAssetIfDirty(returnSettings);
-				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Update Editor Settings...", GetProgress(2));
-				ActiveSettings = returnSettings;
-
-				// Attempt to get an addressable group
-				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Get Addressable Group...", GetProgress(3));
-				AddressableAssetGroup addressableGroup = addressableSettings.FindGroup(AddressableGroupName);
-				if (addressableGroup == null)
-				{
-					// Group not found, create a new read-only group
-					EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Create New Addressable Group...", GetProgress(4));
-					addressableGroup = addressableSettings.CreateGroup(AddressableGroupName, false, true, false, addressableSettings.DefaultGroup.Schemas);
-					addressableSettings.SetDirty(AddressableAssetSettings.ModificationEvent.GroupAdded, addressableGroup, true);
-				}
-
-				// Add the asset to the group
-				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Create New Addressable File...", GetProgress(5));
-				string sourceGuid = AssetDatabase.AssetPathToGUID(filePath);
-				AddressableAssetEntry entry = addressableSettings.CreateOrMoveEntry(sourceGuid, addressableGroup, true);
-				entry.address = AddressableName;
-				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Update Addressables UI...", GetProgress(6));
-				addressableSettings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, entry, true);
-
-				// Close progress bar
-				EditorUtility.ClearProgressBar();
-			}
-			catch (System.Exception ex)
-			{
-				// Close progress bar
-				EditorUtility.ClearProgressBar();
-
-				if (returnSettings)
-				{
-					// Remove returnSettings data
-					Object.DestroyImmediate(returnSettings);
-					returnSettings = null;
-				}
-
-				// Complain about the exception
-				Debug.LogError(ex);
-				EditorUtility.DisplayDialog("Unable to Create Settings",
-					$"There was an error attempting to create a settings file at \"{filePath}\".  Please confirm you have permissions to write to this path.", OK);
-			}
-			return returnSettings;
 		}
 
 		/// <inheritdoc/>
@@ -315,6 +224,172 @@ namespace OmiyaGames.Global.Settings.Editor
 			return returnTree;
 		}
 
+		/// <summary>
+		/// Creates a new instance of
+		/// <typeparamref name="TData"/>.
+		/// Called when the "Create..."
+		/// button is clicked.
+		/// </summary>
+		/// <param name="filePath">
+		/// The path to create the new file in.
+		/// </param>
+		/// <param name="addressableSettings">
+		/// The addressable settings.
+		/// </param>
+		/// <exception cref="System.ArgumentNullException">
+		/// If either arguments are null or if
+		/// <paramref name="filePath"/> is empty string.
+		/// </exception>
+		protected virtual TData CreateNewSettingsAt(string filePath, AddressableAssetSettings addressableSettings)
+		{
+			if (string.IsNullOrEmpty(filePath))
+			{
+				throw new System.ArgumentNullException("addressableSettings");
+			}
+			else if (addressableSettings == null)
+			{
+				throw new System.ArgumentNullException("addressableSettings");
+			}
+
+			// Setup some helper methods
+			const string PROGRESS_TITLE = "Creating Settings";
+			float GetProgress(int step) => Mathf.Clamp01(((float)step) / 6f);
+			TData returnSettings = null;
+
+			try
+			{
+				// Start progress bar
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Creating New File...", GetProgress(0));
+
+				// Attempt to create the settings folder
+				returnSettings = ScriptableObject.CreateInstance<TData>();
+				returnSettings.name = DefaultSettingsFileName;
+				AssetDatabase.CreateAsset(returnSettings, filePath);
+
+				// Save the asset to the project
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Saving Asset...", GetProgress(1));
+				AssetDatabase.SaveAssetIfDirty(returnSettings);
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Update Editor Settings...", GetProgress(2));
+
+				// Attempt to get an addressable group
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Get Addressable Group...", GetProgress(3));
+				AddressableAssetGroup addressableGroup = addressableSettings.FindGroup(AddressableGroupName);
+				if (addressableGroup == null)
+				{
+					// Group not found, create a new read-only group
+					EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Create New Addressable Group...", GetProgress(4));
+					addressableGroup = addressableSettings.CreateGroup(AddressableGroupName, false, true, false, addressableSettings.DefaultGroup.Schemas);
+					addressableSettings.SetDirty(AddressableAssetSettings.ModificationEvent.GroupAdded, addressableGroup, true);
+				}
+
+				// Add the asset to the group
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Create New Addressable File...", GetProgress(5));
+				string sourceGuid = AssetDatabase.AssetPathToGUID(filePath);
+				AddressableAssetEntry entry = addressableSettings.CreateOrMoveEntry(sourceGuid, addressableGroup, true);
+				entry.address = AddressableName;
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Update Addressables UI...", GetProgress(6));
+				addressableSettings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, entry, true);
+
+				// Close progress bar
+				EditorUtility.ClearProgressBar();
+			}
+			catch (System.Exception ex)
+			{
+				// Close progress bar
+				EditorUtility.ClearProgressBar();
+
+				if (returnSettings)
+				{
+					// Remove returnSettings data
+					Object.DestroyImmediate(returnSettings);
+				}
+
+				// Complain about the exception
+				Debug.LogError(ex);
+				EditorUtility.DisplayDialog("Unable to Create Settings",
+					$"There was an error attempting to create a settings file at \"{filePath}\".  Please confirm you have permissions to write to this path.", OK);
+
+				// Halt
+				return null;
+			}
+
+			// Update settings
+			ActiveSettings = returnSettings;
+			return returnSettings;
+		}
+
+		/// <summary>
+		/// TODO
+		/// </summary>
+		/// <param name="existingSettings"></param>
+		protected virtual void OnUserChangedActiveSettings(TData existingSettings)
+		{
+			// Check if user provided settings isn't null
+			if (existingSettings != null)
+			{
+				// Attempt to retrieve the addressable settings, first
+				AddressableAssetSettings addressableSettings = AddressableAssetSettingsDefaultObject.Settings;
+				if (addressableSettings == null)
+				{
+					// If none is found, complain
+					WarnAddressableNotSetup();
+					return;
+				}
+
+				// Setup some helper methods
+				const string PROGRESS_TITLE = "Creating Settings";
+				float GetProgress(int step) => Mathf.Clamp01(((float)step) / 3f);
+
+				try
+				{
+					// Attempt to get an addressable group
+					EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Get Addressable Group...", GetProgress(0));
+					AddressableAssetGroup addressableGroup = addressableSettings.FindGroup(AddressableGroupName);
+					if (addressableGroup == null)
+					{
+						// Group not found, create a new read-only group
+						EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Create New Addressable Group...", GetProgress(1));
+						addressableGroup = addressableSettings.CreateGroup(AddressableGroupName, false, true, false, addressableSettings.DefaultGroup.Schemas);
+						addressableSettings.SetDirty(AddressableAssetSettings.ModificationEvent.GroupAdded, addressableGroup, true);
+					}
+
+					// Add the asset to the group
+					EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Add File to Addressable...", GetProgress(2));
+					AssetDatabase.TryGetGUIDAndLocalFileIdentifier(existingSettings, out string sourceGuid, out long localId);
+					AddressableAssetEntry entry = addressableSettings.CreateOrMoveEntry(sourceGuid, addressableGroup, true);
+					entry.address = AddressableName;
+					EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Update Addressables UI...", GetProgress(3));
+					addressableSettings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, entry, true);
+
+					// Close progress bar
+					EditorUtility.ClearProgressBar();
+				}
+				catch (System.Exception ex)
+				{
+					// Close progress bar
+					EditorUtility.ClearProgressBar();
+
+					// Complain about the exception
+					Debug.LogError(ex);
+					EditorUtility.DisplayDialog("Unable to Add Settings to Addressables",
+						$"There was an error attempting to add the settings into Addressables.", OK);
+					return;
+				}
+			}
+
+			// Update settings
+			ActiveSettings = existingSettings;
+		}
+
+		/// <summary>
+		/// TODO
+		/// </summary>
+		protected static void WarnAddressableNotSetup()
+		{
+			EditorUtility.DisplayDialog("Addressables Is Not Setup",
+				"This settings requires Addressables to be setup. Generate Addressable settings first (e.g. by creating localization settings) before creating an Omiya Games settings.", OK);
+		}
+
 		#region Helper Methods
 		/// <summary>
 		/// Creates a <see cref="VisualElement"/> tree
@@ -330,7 +405,7 @@ namespace OmiyaGames.Global.Settings.Editor
 			ObjectField activeSettings = returnTree.Q<ObjectField>("ActiveSettings");
 			activeSettings.objectType = typeof(TData);
 			activeSettings.value = ActiveSettings;
-			activeSettings.RegisterCallback<ChangeEvent<Object>>(e => ActiveSettings = e.newValue as TData);
+			activeSettings.RegisterCallback<ChangeEvent<Object>>(e => OnUserChangedActiveSettings(e.newValue as TData));
 
 			// Update help info
 			VisualElement helpInfo = returnTree.Q<VisualElement>("HelpInfo");
