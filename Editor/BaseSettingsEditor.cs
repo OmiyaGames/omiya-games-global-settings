@@ -207,7 +207,7 @@ namespace OmiyaGames.Global.Settings.Editor
 		/// If either arguments are null or if
 		/// <paramref name="filePath"/> is empty string.
 		/// </exception>
-		protected virtual void CreateNewSettingsAt(string filePath, AddressableAssetSettings addressableSettings)
+		protected virtual TData CreateNewSettingsAt(string filePath, AddressableAssetSettings addressableSettings)
 		{
 			if (string.IsNullOrEmpty(filePath))
 			{
@@ -221,13 +221,13 @@ namespace OmiyaGames.Global.Settings.Editor
 			// Setup some helper methods
 			const string PROGRESS_TITLE = "Creating Settings";
 			float GetProgress(int step) => Mathf.Clamp01(((float)step) / 5f);
-
-			// Start progress bar
-			EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Creating New File...", GetProgress(0));
 			TData returnSettings = null;
 
 			try
 			{
+				// Start progress bar
+				EditorUtility.DisplayProgressBar(PROGRESS_TITLE, "Creating New File...", GetProgress(0));
+
 				// Attempt to create the settings folder
 				returnSettings = ScriptableObject.CreateInstance<TData>();
 				returnSettings.name = DefaultSettingsFileName;
@@ -278,6 +278,7 @@ namespace OmiyaGames.Global.Settings.Editor
 				EditorUtility.DisplayDialog("Unable to Create Settings",
 					$"There was an error attempting to create a settings file at \"{filePath}\".  Please confirm you have permissions to write to this path.", OK);
 			}
+			return returnSettings;
 		}
 
 		/// <inheritdoc/>
