@@ -2,7 +2,10 @@
 
 ## 1.0.1-pre.1
 
-- TODO
+ - **New Enhancement:** covering edge cases in [`BaseSettingsEditor.cs`](/Editor/BaseSettingsEditor.cs) when...
+     - Addressables settings is not setup, in which case a pop-up indicating so is presented;
+		 - If the user drag-and-drops an existing setting file, in which case the script will be added to both Editor config and Addressables.
+ - **New Enhancement:** Adding new helper function, `LoadSettingsAsync<T>(string)` in [`Data.cs`](/Data/Data.cs).
 
 ## 1.0.0-pre.1
 
