@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using DataHelper = OmiyaGames.Global.Settings.Data;
 
 namespace OmiyaGames.Global.Settings
 {
@@ -75,7 +74,7 @@ namespace OmiyaGames.Global.Settings
 		/// <summary>
 		/// Grabs the static instance of this manager.
 		/// </summary>
-		/// <seealso cref="Data"/>
+		/// <seealso cref="GetData()"/>
 		protected static TManager GetInstance()
 		{
 			TManager returnInstance = ComponentSingleton<TManager>.Get(true, out bool isFirstTimeCreated);
@@ -97,16 +96,16 @@ namespace OmiyaGames.Global.Settings
 		/// Current status of whether
 		/// data for this manager has been loaded or not
 		/// </summary>
-		public static DataHelper.Status GetDataStatus()
+		public static Data.Status GetDataStatus()
 		{
 			switch (GetInstance().loadDataHandle.Status)
 			{
 				case AsyncOperationStatus.Succeeded:
-					return DataHelper.Status.RetrievedProjectData;
+					return Data.Status.RetrievedProjectData;
 				case AsyncOperationStatus.Failed:
-					return DataHelper.Status.UsingDefaultData;
+					return Data.Status.UsingDefaultData;
 				default:
-					return DataHelper.Status.NowLoading;
+					return Data.Status.NowLoading;
 			}
 		}
 
@@ -139,7 +138,7 @@ namespace OmiyaGames.Global.Settings
 		protected virtual IEnumerator OnSetup()
 		{
 			// Attempt to grab a reference to the data
-			loadDataHandle = Addressables.LoadAssetAsync<TData>(AddressableName);
+			loadDataHandle = Data.LoadSettingsAsync<TData>(AddressableName);
 
 			// Wait until it's done loading
 			yield return loadDataHandle;
@@ -163,7 +162,7 @@ namespace OmiyaGames.Global.Settings
 		protected virtual void OnDestroy()
 		{
 			// Destroy default data
-			if (GetDataStatus() == DataHelper.Status.UsingDefaultData)
+			if (GetDataStatus() == Data.Status.UsingDefaultData)
 			{
 				Destroy(data);
 			}
