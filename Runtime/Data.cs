@@ -1,3 +1,6 @@
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
 namespace OmiyaGames.Global.Settings
 {
 	///-----------------------------------------------------------------------
@@ -46,6 +49,17 @@ namespace OmiyaGames.Global.Settings
 	/// </summary>
 	public static class Data
 	{
+		/// <summary>
+		/// Attempts to load an addressable asynchronously.
+		/// </summary>
+		/// <param name="address">
+		/// The name of the addressable.
+		/// </param>
+		/// <returns>
+		/// Coroutine retrieve the addressable.
+		/// </returns>
+		public static AsyncOperationHandle<T> LoadSettingsAsync<T>(string address) where T : BaseSettingsData => Addressables.LoadAssetAsync<T>(address);
+
 		/// <summary>
 		/// Indicates the status of whether
 		/// this manager grabbed an instance of 
