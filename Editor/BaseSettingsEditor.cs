@@ -244,11 +244,11 @@ namespace OmiyaGames.Global.Settings.Editor
 		{
 			if (string.IsNullOrEmpty(filePath))
 			{
-				throw new System.ArgumentNullException("addressableSettings");
+				throw new System.ArgumentNullException(nameof(filePath));
 			}
 			else if (addressableSettings == null)
 			{
-				throw new System.ArgumentNullException("addressableSettings");
+				throw new System.ArgumentNullException(nameof(addressableSettings));
 			}
 
 			// Setup some helper methods
