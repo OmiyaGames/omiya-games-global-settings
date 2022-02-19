@@ -40,6 +40,15 @@ namespace OmiyaGames.Global.Settings
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
 	/// <description>Initial verison.</description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Version:</strong> 1.0.1-pre.1<br/>
+	/// <strong>Date:</strong> 2/19/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
+	/// <description>
+	/// Adding helper method, <seealso cref="LoadSettingsAsync"/>.
+	/// </description>
 	/// </item>
 	/// </list>
 	/// </remarks>

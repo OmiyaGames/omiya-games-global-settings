@@ -43,8 +43,18 @@ namespace OmiyaGames.Global.Settings.Editor
 	/// <strong>Date:</strong> 2/7/2022<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
+	/// <description>Initial version.</description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Date:</strong> 2/19/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
 	/// <description>
-	/// Initial version.
+	/// Before creating a new settings, confirms whether
+	/// <see cref="AddressableAssetGroup.Settings"/> is not <c>null</c>.  If not,
+	/// it provides a pop-up indicating that needs to be setup first. Also properly
+	/// adding an existing <typeparamref name="TData"/> into editor config and
+	/// Addressables if one is provided.
 	/// </description>
 	/// </item>
 	/// </list>
