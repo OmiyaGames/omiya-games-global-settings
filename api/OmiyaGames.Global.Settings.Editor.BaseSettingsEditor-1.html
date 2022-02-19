@@ -136,8 +136,15 @@ THE SOFTWARE.
 <table><thead><tr><th>Revision</th><th>Description</th></tr></thead><tbody><tr><td>
 <strong>Date:</strong> 2/7/2022<br>
 <strong>Author:</strong> Taro Omiya
+</td><td>Initial version.</td></tr><tr><td>
+<strong>Date:</strong> 2/19/2022<br>
+<strong>Author:</strong> Taro Omiya
 </td><td>
-Initial version.
+Before creating a new settings, confirms whether
+<see cref="!:AddressableAssetGroup.Settings"></see> is not <code>null</code>.  If not,
+it provides a pop-up indicating that needs to be setup first. Also properly
+adding an existing <code data-dev-comment-type="typeparamref" class="typeparamref">TData</code> into editor config and
+Addressables if one is provided.
 </td></tr></tbody></table></p>
 </div>
   <h3 id="constructors">Constructors
@@ -560,6 +567,76 @@ button is clicked.</p>
   </table>
   
   
+  <a id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CreateNewSettingsAt_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettingsAt*"></a>
+  <h4 id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CreateNewSettingsAt_System_String_AddressableAssetSettings_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CreateNewSettingsAt(System.String,AddressableAssetSettings)">CreateNewSettingsAt(String, AddressableAssetSettings)</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of
+<code data-dev-comment-type="typeparamref" class="typeparamref">TData</code>.
+Called when the &quot;Create...&quot;
+button is clicked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual TData CreateNewSettingsAt(string filePath, AddressableAssetSettings addressableSettings)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">filePath</span></td>
+        <td><p>The path to create the new file in.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">AddressableAssetSettings</span></td>
+        <td><span class="parametername">addressableSettings</span></td>
+        <td><p>The addressable settings.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>If either arguments are null or if
+<code data-dev-comment-type="paramref" class="paramref">filePath</code> is empty string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_GetEditSettingsTree_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree*"></a>
   <h4 id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_GetEditSettingsTree" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree">GetEditSettingsTree()</h4>
   <div class="markdown level1 summary"><p>Creates a <see cref="!:VisualElement"></see> tree
@@ -617,6 +694,45 @@ to edit the settings asset.</p>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_OnUserChangedActiveSettings_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.OnUserChangedActiveSettings*"></a>
+  <h4 id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_OnUserChangedActiveSettings__0_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.OnUserChangedActiveSettings(`0)">OnUserChangedActiveSettings(TData)</h4>
+  <div class="markdown level1 summary"><p>TODO</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnUserChangedActiveSettings(TData existingSettings)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TData</span></td>
+        <td><span class="parametername">existingSettings</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_WarnAddressableNotSetup_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.WarnAddressableNotSetup*"></a>
+  <h4 id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_WarnAddressableNotSetup" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.WarnAddressableNotSetup">WarnAddressableNotSetup()</h4>
+  <div class="markdown level1 summary"><p>TODO</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static void WarnAddressableNotSetup()</code></pre>
+  </div>
 </article>
           </div>
           

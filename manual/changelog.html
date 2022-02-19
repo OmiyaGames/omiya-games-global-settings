@@ -79,6 +79,17 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="change-log">Change Log:</h1>
 
+<h2 id="101-pre1">1.0.1-pre.1</h2>
+<ul>
+<li><strong>New Enhancement:</strong> covering edge cases in <a href="/Editor/BaseSettingsEditor.cs"><code>BaseSettingsEditor.cs</code></a> when...<ul>
+<li>Addressables settings is not setup, in which case a pop-up indicating so is presented;<ul>
+<li>If the user drag-and-drops an existing setting file, in which case the script will be added to both Editor config and Addressables.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>New Enhancement:</strong> Adding new helper function, <code>LoadSettingsAsync&lt;T&gt;(string)</code> in <a href="/Data/Data.cs"><code>Data.cs</code></a>.</li>
+</ul>
 <h2 id="100-pre1">1.0.0-pre.1</h2>
 <ul>
 <li>Initial release:<ul>
