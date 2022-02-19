@@ -1,5 +1,9 @@
 # Change Log:
 
+## 1.0.1-pre.2
+
+ - Updating package version keywords, dependency versions, etc.
+
 ## 1.0.1-pre.1
 
  - **New Enhancement:** covering edge cases in [`BaseSettingsEditor.cs`](/Editor/BaseSettingsEditor.cs) when...

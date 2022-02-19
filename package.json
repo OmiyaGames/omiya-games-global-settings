@@ -1,11 +1,11 @@
 {
   "name": "com.omiyagames.global.settings",
   "displayName": "Omiya Games - Global Settings",
-  "version": "1.0.1-pre.1",
+  "version": "1.0.1-pre.2",
   "unity": "2021.2",
-  "unityRelease": "11f1",
+  "unityRelease": "12f1",
   "description": "A set of helper libraries to create a project setting accessible on runtime.",
-  "category": "Tool",
+  "category": "Library",
   "type": "library",
   "license": "MIT",
   "author": {
@@ -15,15 +15,16 @@
   },
   "dependencies": {
     "com.unity.ext.nunit": "1.0.0",
-    "com.omiyagames.common": "1.2.0",
+    "com.omiyagames.common": "1.2.2",
     "com.omiyagames.global": "1.3.0",
     "com.unity.addressables": "1.19.17"
   },
   "keywords": [
     "Omiya Games",
     "Scripts",
-    "Template",
-    "Tool"
+    "SettingsProvider",
+    "Addressables",
+    "Library"
   ],
   "scopedRegistries": [
     {
