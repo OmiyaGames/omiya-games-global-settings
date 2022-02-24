@@ -2,7 +2,7 @@
 
 ## 1.1.0-pre.1
 
- - **New Enhancement:** adding virtual method, `CustomizeEditSettingsTree(VisualElement, SerializedObject)`, in [`BaseSettingsEditor.cs`](/Editor/BaseSettingsEditor.cs). this method provides more flexibility for any classes extending this abstract class to customize the editor.
+ - **New Enhancement:** adding virtual method, `CustomizeEditSettingsTree(VisualElement, SerializedObject)`, in [`BaseSettingsEditor.cs`](/Editor/BaseSettingsEditor.cs). this method provides more flexibility for any classes extending this abstract class to customize the editor. This replaces `GetEditSettingsTree()`.
 
 ## 1.0.1-pre.2
 
