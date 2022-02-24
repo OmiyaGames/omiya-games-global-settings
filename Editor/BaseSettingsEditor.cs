@@ -46,6 +46,7 @@ namespace OmiyaGames.Global.Settings.Editor
 	/// <description>Initial version.</description>
 	/// </item><item>
 	/// <term>
+	/// <strong>Version:</strong> 1.0.1-pre.1<br/>
 	/// <strong>Date:</strong> 2/19/2022<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
@@ -56,12 +57,27 @@ namespace OmiyaGames.Global.Settings.Editor
 	/// adding an existing <typeparamref name="TData"/> into editor config and
 	/// Addressables if one is provided.
 	/// </description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Version:</strong> 1.1.0-pre.1<br/>
+	/// <strong>Date:</strong> 2/23/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
+	/// <description>
+	/// Adding method
+	/// <see cref="CustomizeEditSettingsTree(VisualElement, SerializedObject)"/>
+	/// to make customizing the editor more powerful. Turning
+	/// <see cref="GetEditSettingsTree"/> into a private method, as it's
+	/// superseded by the aforementioned addition.
+	/// </description>
 	/// </item>
 	/// </list>
 	/// </remarks>
 	///-----------------------------------------------------------------------
 	/// <summary>
 	/// Template editor script for any <seealso cref="BaseSettingsData"/>.
+	/// To customize the UI, override <see cref="UxmlPath"/> and
+	/// <see cref="CustomizeEditSettingsTree(VisualElement, SerializedObject)"/>.
 	/// </summary>
 	/// <typeparam name="TData">
 	/// Data to render to the Project Settings window.
@@ -218,20 +234,26 @@ namespace OmiyaGames.Global.Settings.Editor
 		}
 
 		/// <summary>
-		/// Creates a <see cref="VisualElement"/> tree
-		/// to edit the settings asset.
+		/// Binds the <paramref name="serializedSettings"/> to
+		/// <paramref name="uxmlTree"/>.
 		/// </summary>
-		protected virtual VisualElement GetEditSettingsTree()
+		/// <param name="uxmlTree">
+		/// The <see cref="VisualElement"/> loaded from
+		/// <see cref="UxmlPath"/>.
+		/// </param>
+		/// <param name="serializedSettings">
+		/// The settings to serialize from.
+		/// </param>
+		/// <returns>
+		/// The <see cref="VisualElement"/> to display.
+		/// </returns>
+		/// <remarks>
+		/// Override this method to customize the UX.
+		/// </remarks>
+		protected virtual VisualElement CustomizeEditSettingsTree(VisualElement uxmlTree, SerializedObject serializedSettings)
 		{
-			// Import UXML
-			VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath);
-			VisualElement returnTree = visualTree.CloneTree();
-
-			// Bind the UXML to a serialized object
-			// Note: this must be done last
-			var serializedSettings = new SerializedObject(ActiveSettings);
-			returnTree.Bind(serializedSettings);
-			return returnTree;
+			uxmlTree.Bind(serializedSettings);
+			return uxmlTree;
 		}
 
 		/// <summary>
@@ -426,6 +448,17 @@ namespace OmiyaGames.Global.Settings.Editor
 			Button createButton = returnTree.Q<Button>("CreateButton");
 			createButton.RegisterCallback<ClickEvent>(CreateNewSettings);
 			return returnTree;
+		}
+
+		VisualElement GetEditSettingsTree()
+		{
+			// Import UXML
+			VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath);
+			VisualElement returnTree = visualTree.CloneTree();
+
+			// Bind the UXML to a serialized object
+			// Note: this must be done last
+			return CustomizeEditSettingsTree(returnTree, new SerializedObject(ActiveSettings));
 		}
 
 		void UpdateBodyContent(TData activeSetting)
