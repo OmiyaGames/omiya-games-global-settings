@@ -46,6 +46,7 @@ namespace OmiyaGames.Global.Settings.Editor
 	/// <description>Initial version.</description>
 	/// </item><item>
 	/// <term>
+	/// <strong>Version:</strong> 1.0.1-pre.1<br/>
 	/// <strong>Date:</strong> 2/19/2022<br/>
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
@@ -55,6 +56,19 @@ namespace OmiyaGames.Global.Settings.Editor
 	/// it provides a pop-up indicating that needs to be setup first. Also properly
 	/// adding an existing <typeparamref name="TData"/> into editor config and
 	/// Addressables if one is provided.
+	/// </description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Version:</strong> 1.1.0-pre.1<br/>
+	/// <strong>Date:</strong> 2/23/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
+	/// <description>
+	/// Adding method
+	/// <see cref="CustomizeEditSettingsTree(VisualElement, SerializedObject)"/>
+	/// to make customizing the editor more powerful. Turning
+	/// <see cref="GetEditSettingsTree"/> into a private method, as it's
+	/// superseded by the aforementioned addition.
 	/// </description>
 	/// </item>
 	/// </list>
