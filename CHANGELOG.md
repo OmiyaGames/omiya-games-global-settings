@@ -1,14 +1,18 @@
 # Change Log:
 
+## 1.1.0-pre.1
+
+ - **New Enhancement:** adding virtual method, `CustomizeEditSettingsTree(VisualElement, SerializedObject)`, in [`BaseSettingsEditor.cs`](/Editor/BaseSettingsEditor.cs). this method provides more flexibility for any classes extending this abstract class to customize the editor.
+
 ## 1.0.1-pre.2
 
  - Updating package version keywords, dependency versions, etc.
 
 ## 1.0.1-pre.1
 
- - **New Enhancement:** covering edge cases in [`BaseSettingsEditor.cs`](/Editor/BaseSettingsEditor.cs) when...
+ - **Bug Fixes:** covering edge cases in [`BaseSettingsEditor.cs`](/Editor/BaseSettingsEditor.cs) when...
      - Addressables settings is not setup, in which case a pop-up indicating so is presented;
-		 - If the user drag-and-drops an existing setting file, in which case the script will be added to both Editor config and Addressables.
+     - If the user drag-and-drops an existing setting file, in which case the script will be added to both Editor config and Addressables.
  - **New Enhancement:** Adding new helper function, `LoadSettingsAsync<T>(string)` in [`Data.cs`](/Data/Data.cs).
 
 ## 1.0.0-pre.1
