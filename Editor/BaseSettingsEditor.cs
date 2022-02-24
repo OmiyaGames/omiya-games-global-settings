@@ -62,6 +62,8 @@ namespace OmiyaGames.Global.Settings.Editor
 	///-----------------------------------------------------------------------
 	/// <summary>
 	/// Template editor script for any <seealso cref="BaseSettingsData"/>.
+	/// To customize the UI, override <see cref="UxmlPath"/> and
+	/// <see cref="CustomizeEditSettingsTree(VisualElement, SerializedObject)"/>.
 	/// </summary>
 	/// <typeparam name="TData">
 	/// Data to render to the Project Settings window.
@@ -218,20 +220,26 @@ namespace OmiyaGames.Global.Settings.Editor
 		}
 
 		/// <summary>
-		/// Creates a <see cref="VisualElement"/> tree
-		/// to edit the settings asset.
+		/// Binds the <paramref name="serializedSettings"/> to
+		/// <paramref name="uxmlTree"/>.
 		/// </summary>
-		protected virtual VisualElement GetEditSettingsTree()
+		/// <param name="uxmlTree">
+		/// The <see cref="VisualElement"/> loaded from
+		/// <see cref="UxmlPath"/>.
+		/// </param>
+		/// <param name="serializedSettings">
+		/// The settings to serialize from.
+		/// </param>
+		/// <returns>
+		/// The <see cref="VisualElement"/> to display.
+		/// </returns>
+		/// <remarks>
+		/// Override this method to customize the UX.
+		/// </remarks>
+		protected virtual VisualElement CustomizeEditSettingsTree(VisualElement uxmlTree, SerializedObject serializedSettings)
 		{
-			// Import UXML
-			VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath);
-			VisualElement returnTree = visualTree.CloneTree();
-
-			// Bind the UXML to a serialized object
-			// Note: this must be done last
-			var serializedSettings = new SerializedObject(ActiveSettings);
-			returnTree.Bind(serializedSettings);
-			return returnTree;
+			uxmlTree.Bind(serializedSettings);
+			return uxmlTree;
 		}
 
 		/// <summary>
@@ -426,6 +434,17 @@ namespace OmiyaGames.Global.Settings.Editor
 			Button createButton = returnTree.Q<Button>("CreateButton");
 			createButton.RegisterCallback<ClickEvent>(CreateNewSettings);
 			return returnTree;
+		}
+
+		VisualElement GetEditSettingsTree()
+		{
+			// Import UXML
+			VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlPath);
+			VisualElement returnTree = visualTree.CloneTree();
+
+			// Bind the UXML to a serialized object
+			// Note: this must be done last
+			return CustomizeEditSettingsTree(returnTree, new SerializedObject(ActiveSettings));
 		}
 
 		void UpdateBodyContent(TData activeSetting)
