@@ -83,7 +83,9 @@
   
   <h1 id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1" class="text-break">Class BaseSettingsEditor&lt;TData&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Template editor script for any <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsData.html">BaseSettingsData</a>.</p>
+  <div class="markdown level0 summary"><p>Template editor script for any <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsData.html">BaseSettingsData</a>.
+To customize the UI, override <a class="xref" href="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_UxmlPath">UxmlPath</a> and
+<a class="xref" href="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CustomizeEditSettingsTree_VisualElement_SerializedObject_">CustomizeEditSettingsTree(VisualElement, SerializedObject)</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -137,6 +139,7 @@ THE SOFTWARE.
 <strong>Date:</strong> 2/7/2022<br>
 <strong>Author:</strong> Taro Omiya
 </td><td>Initial version.</td></tr><tr><td>
+<strong>Version:</strong> 1.0.1-pre.1<br>
 <strong>Date:</strong> 2/19/2022<br>
 <strong>Author:</strong> Taro Omiya
 </td><td>
@@ -145,6 +148,16 @@ Before creating a new settings, confirms whether
 it provides a pop-up indicating that needs to be setup first. Also properly
 adding an existing <code data-dev-comment-type="typeparamref" class="typeparamref">TData</code> into editor config and
 Addressables if one is provided.
+</td></tr><tr><td>
+<strong>Version:</strong> 1.1.0-pre.1<br>
+<strong>Date:</strong> 2/23/2022<br>
+<strong>Author:</strong> Taro Omiya
+</td><td>
+Adding method
+<a class="xref" href="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CustomizeEditSettingsTree_VisualElement_SerializedObject_">CustomizeEditSettingsTree(VisualElement, SerializedObject)</a>
+to make customizing the editor more powerful. Turning
+<span class="xref">OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree</span> into a private method, as it&apos;s
+superseded by the aforementioned addition.
 </td></tr></tbody></table></p>
 </div>
   <h3 id="constructors">Constructors
@@ -637,16 +650,41 @@ button is clicked.</p>
   </table>
   
   
-  <a id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_GetEditSettingsTree_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree*"></a>
-  <h4 id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_GetEditSettingsTree" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree">GetEditSettingsTree()</h4>
-  <div class="markdown level1 summary"><p>Creates a <see cref="!:VisualElement"></see> tree
-to edit the settings asset.</p>
+  <a id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CustomizeEditSettingsTree_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CustomizeEditSettingsTree*"></a>
+  <h4 id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CustomizeEditSettingsTree_VisualElement_SerializedObject_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CustomizeEditSettingsTree(VisualElement,SerializedObject)">CustomizeEditSettingsTree(VisualElement, SerializedObject)</h4>
+  <div class="markdown level1 summary"><p>Binds the <code data-dev-comment-type="paramref" class="paramref">serializedSettings</code> to
+<code data-dev-comment-type="paramref" class="paramref">uxmlTree</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual VisualElement GetEditSettingsTree()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual VisualElement CustomizeEditSettingsTree(VisualElement uxmlTree, SerializedObject serializedSettings)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">VisualElement</span></td>
+        <td><span class="parametername">uxmlTree</span></td>
+        <td><p>The <see cref="!:VisualElement"></see> loaded from
+<a class="xref" href="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_UxmlPath">UxmlPath</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">SerializedObject</span></td>
+        <td><span class="parametername">serializedSettings</span></td>
+        <td><p>The settings to serialize from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -658,10 +696,14 @@ to edit the settings asset.</p>
     <tbody>
       <tr>
         <td><span class="xref">VisualElement</span></td>
-        <td></td>
+        <td><p>The <see cref="!:VisualElement"></see> to display.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CustomizeEditSettingsTree_VisualElement_SerializedObject__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Override this method to customize the UX.</p>
+</div>
   
   
   <a id="OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_OnActivate_" data-uid="OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.OnActivate*"></a>

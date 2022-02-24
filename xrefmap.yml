@@ -488,6 +488,23 @@ references:
   fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).CreateNewSettingsDialogTitle
   nameWithType: BaseSettingsEditor<TData>.CreateNewSettingsDialogTitle
   nameWithType.vb: BaseSettingsEditor(Of TData).CreateNewSettingsDialogTitle
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CustomizeEditSettingsTree(VisualElement,SerializedObject)
+  name: CustomizeEditSettingsTree(VisualElement, SerializedObject)
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CustomizeEditSettingsTree_VisualElement_SerializedObject_
+  commentId: M:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CustomizeEditSettingsTree(VisualElement,SerializedObject)
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.CustomizeEditSettingsTree(VisualElement, SerializedObject)
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).CustomizeEditSettingsTree(VisualElement, SerializedObject)
+  nameWithType: BaseSettingsEditor<TData>.CustomizeEditSettingsTree(VisualElement, SerializedObject)
+  nameWithType.vb: BaseSettingsEditor(Of TData).CustomizeEditSettingsTree(VisualElement, SerializedObject)
+- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CustomizeEditSettingsTree*
+  name: CustomizeEditSettingsTree
+  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_CustomizeEditSettingsTree_
+  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.CustomizeEditSettingsTree
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.CustomizeEditSettingsTree
+  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).CustomizeEditSettingsTree
+  nameWithType: BaseSettingsEditor<TData>.CustomizeEditSettingsTree
+  nameWithType.vb: BaseSettingsEditor(Of TData).CustomizeEditSettingsTree
 - uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.DefaultSettingsFileName
   name: DefaultSettingsFileName
   href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_DefaultSettingsFileName
@@ -513,23 +530,6 @@ references:
   fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).FILE_EXTENSION
   nameWithType: BaseSettingsEditor<TData>.FILE_EXTENSION
   nameWithType.vb: BaseSettingsEditor(Of TData).FILE_EXTENSION
-- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree
-  name: GetEditSettingsTree()
-  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_GetEditSettingsTree
-  commentId: M:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree
-  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.GetEditSettingsTree()
-  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).GetEditSettingsTree()
-  nameWithType: BaseSettingsEditor<TData>.GetEditSettingsTree()
-  nameWithType.vb: BaseSettingsEditor(Of TData).GetEditSettingsTree()
-- uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree*
-  name: GetEditSettingsTree
-  href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_GetEditSettingsTree_
-  commentId: Overload:OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.GetEditSettingsTree
-  isSpec: "True"
-  fullName: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor<TData>.GetEditSettingsTree
-  fullName.vb: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor(Of TData).GetEditSettingsTree
-  nameWithType: BaseSettingsEditor<TData>.GetEditSettingsTree
-  nameWithType.vb: BaseSettingsEditor(Of TData).GetEditSettingsTree
 - uid: OmiyaGames.Global.Settings.Editor.BaseSettingsEditor`1.HeaderText
   name: HeaderText
   href: api/OmiyaGames.Global.Settings.Editor.BaseSettingsEditor-1.html#OmiyaGames_Global_Settings_Editor_BaseSettingsEditor_1_HeaderText
