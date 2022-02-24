@@ -1,7 +1,7 @@
 {
   "name": "com.omiyagames.global.settings",
   "displayName": "Omiya Games - Global Settings",
-  "version": "1.0.1-pre.2",
+  "version": "1.1.0-pre.2",
   "unity": "2021.2",
   "unityRelease": "12f1",
   "description": "A set of helper libraries to create a project setting accessible on runtime.",
