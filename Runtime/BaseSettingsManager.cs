@@ -42,6 +42,17 @@ namespace OmiyaGames.Global.Settings
 	/// <strong>Author:</strong> Taro Omiya
 	/// </term>
 	/// <description>Initial verison.</description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Version:</strong> 1.1.0-pre.2<br/>
+	/// <strong>Date:</strong> 2/6/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
+	/// <description>
+	/// Making the script returned by <see cref="GetInstance"/> deactivated
+	/// by default. User will have to override <see cref="OnSetup"/> to
+	/// activate the script on start.
+	/// </description>
 	/// </item>
 	/// </list>
 	/// </remarks>
@@ -49,15 +60,7 @@ namespace OmiyaGames.Global.Settings
 	/// <summary>
 	/// Abstract class that manages game interaction with
 	/// <typeparamref name="TData"/>.
-	/// </summary>
-	/// <typeparam name="TManager">
-	/// The concrete type extending this class.
-	/// </typeparam>
-	/// <typeparam name="TData">
-	/// The type of stored project settings to read from.
-	/// </typeparam>
-	/// <remarks>
-	/// Most classes extending this one should be composed of static methods
+	/// Most classes extending this should be composed of static methods
 	/// and properties:
 	/// <code>
 	/// public class TimeManager : BaseSettingsManager&lt;TimeManager, TimeData&gt;
@@ -65,7 +68,13 @@ namespace OmiyaGames.Global.Settings
 	///     // Add static methods here
 	/// }
 	/// </code>
-	/// </remarks>
+	/// </summary>
+	/// <typeparam name="TManager">
+	/// The concrete type extending this class.
+	/// </typeparam>
+	/// <typeparam name="TData">
+	/// The type of stored project settings to read from.
+	/// </typeparam>
 	public abstract class BaseSettingsManager<TManager, TData> : MonoBehaviour where TManager : BaseSettingsManager<TManager, TData> where TData : BaseSettingsData
 	{
 		TData data = null;
@@ -77,10 +86,10 @@ namespace OmiyaGames.Global.Settings
 		/// <seealso cref="GetData()"/>
 		protected static TManager GetInstance()
 		{
-			TManager returnInstance = ComponentSingleton<TManager>.Get(true, out bool isFirstTimeCreated);
+			TManager returnInstance = ComponentSingleton<TManager>.Get(out bool isFirstTimeCreated);
 			if (isFirstTimeCreated)
 			{
-				returnInstance.StartCoroutine(returnInstance.OnSetup());
+				Manager.StartCoroutine(returnInstance.OnSetup());
 			}
 			return returnInstance;
 		}
@@ -117,9 +126,9 @@ namespace OmiyaGames.Global.Settings
 		public static IEnumerator WaitUntilReady()
 		{
 			TManager check = GetInstance();
-			while (check.data == null)
+			if (check.data == null)
 			{
-				yield return null;
+				yield return new WaitUntil(() => check.data != null);
 			}
 		}
 
@@ -154,6 +163,9 @@ namespace OmiyaGames.Global.Settings
 				// Set data to a default instance
 				data = ScriptableObject.CreateInstance<TData>();
 			}
+
+			// Wait a frame
+			yield return null;
 		}
 
 		/// <summary>
