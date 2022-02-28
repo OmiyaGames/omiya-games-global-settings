@@ -94,6 +94,23 @@ references:
   fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).AddressableName
   nameWithType: BaseSettingsManager<TManager, TData>.AddressableName
   nameWithType.vb: BaseSettingsManager(Of TManager, TData).AddressableName
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.Data
+  name: Data
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_Data
+  commentId: P:OmiyaGames.Global.Settings.BaseSettingsManager`2.Data
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.Data
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).Data
+  nameWithType: BaseSettingsManager<TManager, TData>.Data
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).Data
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.Data*
+  name: Data
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_Data_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.Data
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.Data
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).Data
+  nameWithType: BaseSettingsManager<TManager, TData>.Data
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).Data
 - uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetData
   name: GetData()
   href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetData

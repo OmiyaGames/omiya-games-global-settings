@@ -83,8 +83,40 @@
   
   <h1 id="OmiyaGames_Global_Settings_BaseSettingsManager_2" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2" class="text-break">Class BaseSettingsManager&lt;TManager, TData&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Abstract class that manages game interaction with
-<code data-dev-comment-type="typeparamref" class="typeparamref">TData</code>.</p>
+  <div class="markdown level0 summary"><p>
+Abstract class that manages game interaction with
+<code data-dev-comment-type="typeparamref" class="typeparamref">TData</code>.
+</p><p>
+Most classes extending this should be a private class that a static
+class access:
+<pre><code>public static class TestManager
+{
+    // Add static methods and properties here
+    public static int CurrentVersion => TestSettingsManager.GetData().CurrentVersion;
+
+    // Creating a private implementation of BaseSettingsManager so
+    // it doesn&apos;t show up as a script that can be attached to a GameObject
+    private class TestSettingsManager : BaseSettingsManager&lt;TestSettingsManager, TestData>
+    {
+        // Return the expected addressable name here
+        protected override string AddressableName => &quot;Test&quot;;
+
+        // Optionally, override the OnSetup method to perform any setup
+        protected override IEnumerator OnSetup()
+        {
+            // The base method loads the data
+            yield return Manager.StartCoroutine(base.OnSetup());
+
+            // Perform some setup here
+            Debug.Log($&quot;Data version is {Data.CurrentVersion}&quot;);
+        }
+    }
+
+    // BaseSettingsData can be public, though;
+    // it&apos;s just a ScriptableObject.
+    public class TestData : BaseSettingsData { }
+}</code></pre>
+</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -143,7 +175,15 @@ THE SOFTWARE.
 <strong>Version:</strong> 1.0.0-pre.1<br>
 <strong>Date:</strong> 2/6/2022<br>
 <strong>Author:</strong> Taro Omiya
-</td><td>Initial verison.</td></tr></tbody></table></p>
+</td><td>Initial verison.</td></tr><tr><td>
+<strong>Version:</strong> 1.1.0-pre.2<br>
+<strong>Date:</strong> 2/6/2022<br>
+<strong>Author:</strong> Taro Omiya
+</td><td>
+Making the script returned by <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstance">GetInstance()</a> deactivated
+by default. User will have to override <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_OnSetup">OnSetup()</a> to
+activate the script on start.
+</td></tr></tbody></table></p>
 </div>
   <h3 id="properties">Properties
   </h3>
@@ -173,6 +213,32 @@ THE SOFTWARE.
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="OmiyaGames_Global_Settings_BaseSettingsManager_2_Data_" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.Data*"></a>
+  <h4 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_Data" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.Data">Data</h4>
+  <div class="markdown level1 summary"><p>Grabs the data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TData Data { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   
@@ -184,7 +250,7 @@ THE SOFTWARE.
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static TData GetData()</code></pre>
+    <pre><code class="lang-csharp hljs">public static TData GetData()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -241,7 +307,7 @@ data for this manager has been loaded or not</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static TManager GetInstance()</code></pre>
+    <pre><code class="lang-csharp hljs">public static TManager GetInstance()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
