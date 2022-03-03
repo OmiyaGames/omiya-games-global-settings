@@ -30,14 +30,14 @@ namespace OmiyaGames.Global.Settings.Tests
 			Data.Status expectedStatus = Data.Status.UsingDefaultData;
 			if(handle.Status == AsyncOperationStatus.Succeeded)
 			{
-				expectedStatus = Data.Status.RetrievedProjectData;
+				expectedStatus = Data.Status.Success;
 			}
 
 			// Release the handle
 			Addressables.Release(handle);
 
 			// Wait until is done loading
-			yield return TestSettingsManager.WaitUntilReady();
+			yield return TestSettingsManager.Setup();
 
 			// Check if the default data is being used by TestSettingsManager.
 			Assert.AreEqual(expectedStatus, TestSettingsManager.GetDataStatus());

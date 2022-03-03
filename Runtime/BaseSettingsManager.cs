@@ -104,6 +104,7 @@ namespace OmiyaGames.Global.Settings
 	public abstract class BaseSettingsManager<TManager, TData> : MonoBehaviour where TManager : BaseSettingsManager<TManager, TData> where TData : BaseSettingsData
 	{
 		AsyncOperationHandle<TData> loadDataHandle;
+		WaitWhile waitCache;
 
 		/// <summary>
 		/// Grabs the static instance of this manager.
@@ -130,31 +131,65 @@ namespace OmiyaGames.Global.Settings
 		/// Current status of whether
 		/// data for this manager has been loaded or not
 		/// </summary>
-		public static Data.Status GetDataStatus()
+		public static Data.Status GetDataStatus() => GetInstance().GetStatus();
+
+		/// <summary>
+		/// Same thing as <seealso cref="GetInstance()"/>,
+		/// but throws an exception if not setup correctly.
+		/// </summary>
+		/// <returns></returns>
+		/// <exception cref="System.Exception"></exception>
+		public static TManager GetInstanceOrThrow()
 		{
-			switch (GetInstance().loadDataHandle.Status)
+			TManager manager = GetInstance();
+			switch (manager.GetStatus())
 			{
-				case AsyncOperationStatus.Succeeded:
-					return Settings.Data.Status.RetrievedProjectData;
-				case AsyncOperationStatus.Failed:
-					return Settings.Data.Status.UsingDefaultData;
+				case Settings.Data.Status.Success:
+				case Settings.Data.Status.UsingDefaultData:
+					return manager;
 				default:
-					return Settings.Data.Status.NowLoading;
+					throw new System.Exception($"{typeof(TManager)} is not setup yet.");
 			}
 		}
 
 		/// <summary>
-		/// Created a coroutine that waits until this manager
-		/// finished loading its data.
+		/// Same thing as <seealso cref="GetData()"/>,
+		/// but throws an exception if not setup correctly.
 		/// </summary>
-		/// <seealso cref="IsReady"/>
-		public static IEnumerator WaitUntilReady()
+		/// <returns></returns>
+		/// <exception cref="System.Exception"></exception>
+		public static TData GetDataOrThrow() => GetInstanceOrThrow().Data;
+
+		/// <summary>
+		/// A coroutine to setup this manager.
+		/// </summary>
+		/// <param name="forceSetup">
+		/// If true, forces the manager to perform setup again, assuming
+		/// it already is in the middle of that.
+		/// </param>
+		/// <returns></returns>
+		public static IEnumerator Setup(bool forceSetup = false)
 		{
-			TManager check = GetInstance();
-			if (check.Data == null)
+			// Check if currently loading
+			TManager manager = GetInstance();
+			if (IsLoading())
 			{
-				yield return new WaitUntil(() => check.Data != null);
+				// Create a Wait instance, and cache it
+				if (manager.waitCache == null)
+				{
+					manager.waitCache = new WaitWhile(IsLoading);
+				}
+
+				// Return the cache
+				yield return manager.waitCache;
 			}
+			else if (forceSetup)
+			{
+				// Force setup
+				yield return Manager.StartCoroutine(manager.OnSetup());
+			}
+
+			bool IsLoading() => (manager.GetStatus() == Settings.Data.Status.Loading);
 		}
 
 		/// <summary>
@@ -163,6 +198,23 @@ namespace OmiyaGames.Global.Settings
 		protected abstract string AddressableName
 		{
 			get;
+		}
+
+		/// <summary>
+		/// Retrieves the current status of this manager.
+		/// </summary>
+		/// <returns></returns>
+		public virtual Data.Status GetStatus()
+		{
+			switch (loadDataHandle.Status)
+			{
+				case AsyncOperationStatus.Succeeded:
+					return Settings.Data.Status.Success;
+				case AsyncOperationStatus.Failed:
+					return Settings.Data.Status.UsingDefaultData;
+				default:
+					return Settings.Data.Status.Loading;
+			}
 		}
 
 		/// <summary>
@@ -178,6 +230,10 @@ namespace OmiyaGames.Global.Settings
 		/// Event called on creation of this manager
 		/// (before <c>Awake()</c> and <c>Start()</c> are called.)
 		/// </summary>
+		/// <remarks>
+		/// If this method is overridden, don't forget to override
+		/// <seealso cref="GetStatus()"/> as well.
+		/// </remarks>
 		protected virtual IEnumerator OnSetup()
 		{
 			// Attempt to grab a reference to the data
@@ -197,9 +253,6 @@ namespace OmiyaGames.Global.Settings
 				// Set data to a default instance
 				Data = ScriptableObject.CreateInstance<TData>();
 			}
-
-			// Wait a frame
-			yield return null;
 		}
 
 		/// <summary>

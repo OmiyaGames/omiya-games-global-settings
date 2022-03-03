@@ -79,16 +79,21 @@ namespace OmiyaGames.Global.Settings
 			/// <summary>
 			/// Working on loading the project settings.
 			/// </summary>
-			NowLoading,
+			Loading,
 			/// <summary>
 			/// Successfully loaded the project settings.
 			/// </summary>
-			RetrievedProjectData,
+			Success,
 			/// <summary>
 			/// Failed to load the project settings,
 			/// using default settings instead.
 			/// </summary>
 			UsingDefaultData,
+			/// <summary>
+			/// Failed to load the project settings,
+			/// please try again.
+			/// </summary>
+			Fail
 		}
 	}
 }
