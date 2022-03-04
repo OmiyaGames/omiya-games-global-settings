@@ -1,5 +1,17 @@
 # Change Log:
 
+## 1.2.0-pre.1
+
+ - **Breaking Changes:** Renaming enum fields in [`Data.cs`]()/Runtime/Data.cs) to be shorter:
+     - `RetrievedProjectData` has been changed to `Success`;
+		 - `NowLoading` is shortened to `Loading`;
+		 - and also added `Fail`.
+ - **Breaking Changes:** Making some changes in [`BaseSettingsManager.cs`](/Runtime/BaseSettingsManager.cs):
+     - Taking out protected static coroutine `WaitUntilRead()`.  This is replaced by...
+		 - Added `Setup(bool force)`, which not only is a public static coroutine that serve to setup the manager (if it isn't already, or `force` param is set to true), but uses `GetDataStatus()` to determine finish condition instead of `Data` being not-null.
+		 - Added virtual method, `GetStatus()` which `GetDataStatus()` calls.  Determines the state of the manager.  If this method returns a value other than `Loading`, `Setup(bool)` assumes the manager is finished setting up.
+		 - Adding helper methods `GetInstanceOrThrow()` and `GetDataOrThrow()`, both which does the same thing as `GetInstance()` and `GetData()`, but with error checking for whether the instance finished setup with `Success` or `UsingDefaultData` status.
+
 ## 1.1.0-pre.2
 
  - **New Enhancement:** Updating documentation on [`BaseSettingsManager.cs`](/Runtime/BaseSettingsManager.cs) encouraging a new standard: keep any extending classes private.  Updated certain method's access level, such as `GetInstance()` and `GetData()`, to public so this standard can more easily be enforced.
