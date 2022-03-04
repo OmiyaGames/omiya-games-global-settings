@@ -49,6 +49,17 @@ namespace OmiyaGames.Global.Settings
 	/// <description>
 	/// Adding helper method, <seealso cref="LoadSettingsAsync"/>.
 	/// </description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Version:</strong> 1.2.0-pre.1<br/>
+	/// <strong>Date:</strong> 3/3/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
+	/// <description>
+	/// Adding breaking changes: <c>Status.NowLoading</c> has been replaced
+	/// with <see cref="Status.Loading"/>; <c>Status.RetrievedProjectData</c>,
+	/// with <see cref="Status.Success"/>; and added <see cref="Status.Fail"/>.
+	/// </description>
 	/// </item>
 	/// </list>
 	/// </remarks>
