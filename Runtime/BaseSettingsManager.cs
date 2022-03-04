@@ -53,47 +53,34 @@ namespace OmiyaGames.Global.Settings
 	/// by default. User will have to override <see cref="OnSetup"/> to
 	/// activate the script on start.
 	/// </description>
+	/// </item><item>
+	/// <term>
+	/// <strong>Version:</strong> 1.2.0-pre.1<br/>
+	/// <strong>Date:</strong> 3/3/2022<br/>
+	/// <strong>Author:</strong> Taro Omiya
+	/// </term>
+	/// <description>
+	/// <para>
+	/// Adding breaking changes:
+	/// </para><para>
+	/// Replacing coroutine <c>WaitUntilRead()</c> with <see cref="Setup(bool)"/>.
+	/// </para><para>
+	/// Adding virtual method <see cref="GetStatus()"/>. This needs to be
+	/// overridden if <see cref="OnSetup()"/> is overridden as well, as
+	/// <see cref="Setup(bool)"/> uses <see cref="GetStatus()"/> to determine
+	/// when <see cref="OnSetup()"/> method is done.  See example code below
+	/// for more details.
+	/// </para><para>
+	/// Added helper methods <see cref="GetInstanceOrThrow()"/> and <see cref="GetDataOrThrow()"/>.
+	/// </para>
+	/// </description>
 	/// </item>
 	/// </list>
 	/// </remarks>
 	///-----------------------------------------------------------------------
 	/// <summary>
-	/// <para>
 	/// Abstract class that manages game interaction with
 	/// <typeparamref name="TData"/>.
-	/// </para><para>
-	/// Most classes extending this should be a private class that a static
-	/// class access:
-	/// <code>
-	/// public static class TestManager
-	/// {
-	///     // Add static methods and properties here
-	///     public static int CurrentVersion => TestSettingsManager.GetData().CurrentVersion;
-	/// 
-	///     // Creating a private implementation of BaseSettingsManager so
-	///     // it doesn't show up as a script that can be attached to a GameObject
-	///     private class TestSettingsManager : BaseSettingsManager&lt;TestSettingsManager, TestData&gt;
-	///     {
-	///         // Return the expected addressable name here
-	///         protected override string AddressableName => "Test";
-	/// 
-	///         // Optionally, override the OnSetup method to perform any setup
-	///         protected override IEnumerator OnSetup()
-	///         {
-	///             // The base method loads the data
-	///             yield return Manager.StartCoroutine(base.OnSetup());
-	/// 
-	///             // Perform some setup here
-	///             Debug.Log($"Data version is {Data.CurrentVersion}");
-	///         }
-	///     }
-	/// 
-	///     // BaseSettingsData can be public, though;
-	///     // it's just a ScriptableObject.
-	///     public class TestData : BaseSettingsData { }
-	/// }
-	/// </code>
-	/// </para>
 	/// </summary>
 	/// <typeparam name="TManager">
 	/// The concrete type extending this class.
@@ -101,9 +88,65 @@ namespace OmiyaGames.Global.Settings
 	/// <typeparam name="TData">
 	/// The type of stored project settings to read from.
 	/// </typeparam>
+	/// <example>
+	/// Most classes extending this should be a private class that a static
+	/// class access:
+	/// <code>
+	/// using System.Collections;
+	/// 
+	/// public static class TestManager
+	/// {
+	///     // Add static methods and properties here
+	///     public static IEnumerator Setup(bool force)
+	///     {
+	///         // This coroutine ends when GetStatus() returns
+	///         // a value other than Data.Status.Loading
+	///         yield return Manager.StartCoroutine(TestSettingsManager.Setup(force));
+	///     }
+	/// 
+	///     public static int CurrentVersion => TestSettingsManager.GetDataOrThrow().CurrentVersion;
+	/// 
+	///     // Creating a private implementation of BaseSettingsManager so
+	///     // it doesn't show up as a script that can be attached to a GameObject
+	///     class TestSettingsManager : BaseSettingsManager&lt;TestSettingsManager, TestData&gt;
+	///     {
+	///         // Return the expected addressable name here
+	///         protected override string AddressableName => "Test";
+	/// 
+	///         // Optionally, override the OnSetup method to perform any setup
+	///         Data.Status status = Data.Status.Loading;
+	/// 
+	///         protected override IEnumerator OnSetup()
+	///         {
+	///             // Indicate loading
+	///             status = Data.Status.Loading;
+	/// 
+	///             // The base method loads the data
+	///             yield return Manager.StartCoroutine(base.OnSetup());
+	/// 
+	///             // Perform some setup here
+	///             Debug.Log($"Data version is {Data.CurrentVersion}");
+	/// 
+	///             // Indicate loading finished
+	///             status = base.GetStatus();
+	///         }
+	/// 
+	///         // If OnSetup method is overridden, don't forget to override GetStatus as well.
+	///         // If this method returns a value other than Data.Status.Loading, Setup(bool)
+	///         // assumes OnSetup is finished (though not necessarily setup successfully.)
+	///         public override Data.Status GetStatus() => status;
+	///     }
+	/// 
+	///     // BaseSettingsData can be public, though;
+	///     // it's just a ScriptableObject.
+	///     public class TestData : BaseSettingsData { }
+	/// }
+	/// </code>
+	/// </example>
 	public abstract class BaseSettingsManager<TManager, TData> : MonoBehaviour where TManager : BaseSettingsManager<TManager, TData> where TData : BaseSettingsData
 	{
 		AsyncOperationHandle<TData> loadDataHandle;
+		WaitWhile waitCache;
 
 		/// <summary>
 		/// Grabs the static instance of this manager.
@@ -130,31 +173,65 @@ namespace OmiyaGames.Global.Settings
 		/// Current status of whether
 		/// data for this manager has been loaded or not
 		/// </summary>
-		public static Data.Status GetDataStatus()
+		public static Data.Status GetDataStatus() => GetInstance().GetStatus();
+
+		/// <summary>
+		/// Same thing as <seealso cref="GetInstance()"/>,
+		/// but throws an exception if not setup correctly.
+		/// </summary>
+		/// <returns></returns>
+		/// <exception cref="System.Exception"></exception>
+		public static TManager GetInstanceOrThrow()
 		{
-			switch (GetInstance().loadDataHandle.Status)
+			TManager manager = GetInstance();
+			switch (manager.GetStatus())
 			{
-				case AsyncOperationStatus.Succeeded:
-					return Settings.Data.Status.RetrievedProjectData;
-				case AsyncOperationStatus.Failed:
-					return Settings.Data.Status.UsingDefaultData;
+				case Settings.Data.Status.Success:
+				case Settings.Data.Status.UsingDefaultData:
+					return manager;
 				default:
-					return Settings.Data.Status.NowLoading;
+					throw new System.Exception($"{typeof(TManager)} is not setup yet.");
 			}
 		}
 
 		/// <summary>
-		/// Created a coroutine that waits until this manager
-		/// finished loading its data.
+		/// Same thing as <seealso cref="GetData()"/>,
+		/// but throws an exception if not setup correctly.
 		/// </summary>
-		/// <seealso cref="IsReady"/>
-		public static IEnumerator WaitUntilReady()
+		/// <returns></returns>
+		/// <exception cref="System.Exception"></exception>
+		public static TData GetDataOrThrow() => GetInstanceOrThrow().Data;
+
+		/// <summary>
+		/// A coroutine to setup this manager.
+		/// </summary>
+		/// <param name="forceSetup">
+		/// If true, forces the manager to perform setup again, assuming
+		/// it already is in the middle of that.
+		/// </param>
+		/// <returns></returns>
+		public static IEnumerator Setup(bool forceSetup = false)
 		{
-			TManager check = GetInstance();
-			if (check.Data == null)
+			// Check if currently loading
+			TManager manager = GetInstance();
+			if (IsLoading())
 			{
-				yield return new WaitUntil(() => check.Data != null);
+				// Create a Wait instance, and cache it
+				if (manager.waitCache == null)
+				{
+					manager.waitCache = new WaitWhile(IsLoading);
+				}
+
+				// Return the cache
+				yield return manager.waitCache;
 			}
+			else if (forceSetup)
+			{
+				// Force setup
+				yield return Manager.StartCoroutine(manager.OnSetup());
+			}
+
+			bool IsLoading() => (manager.GetStatus() == Settings.Data.Status.Loading);
 		}
 
 		/// <summary>
@@ -163,6 +240,23 @@ namespace OmiyaGames.Global.Settings
 		protected abstract string AddressableName
 		{
 			get;
+		}
+
+		/// <summary>
+		/// Retrieves the current status of this manager.
+		/// </summary>
+		/// <returns></returns>
+		public virtual Data.Status GetStatus()
+		{
+			switch (loadDataHandle.Status)
+			{
+				case AsyncOperationStatus.Succeeded:
+					return Settings.Data.Status.Success;
+				case AsyncOperationStatus.Failed:
+					return Settings.Data.Status.UsingDefaultData;
+				default:
+					return Settings.Data.Status.Loading;
+			}
 		}
 
 		/// <summary>
@@ -178,6 +272,10 @@ namespace OmiyaGames.Global.Settings
 		/// Event called on creation of this manager
 		/// (before <c>Awake()</c> and <c>Start()</c> are called.)
 		/// </summary>
+		/// <remarks>
+		/// If this method is overridden, don't forget to override
+		/// <seealso cref="GetStatus()"/> as well.
+		/// </remarks>
 		protected virtual IEnumerator OnSetup()
 		{
 			// Attempt to grab a reference to the data
@@ -197,9 +295,6 @@ namespace OmiyaGames.Global.Settings
 				// Set data to a default instance
 				Data = ScriptableObject.CreateInstance<TData>();
 			}
-
-			// Wait a frame
-			yield return null;
 		}
 
 		/// <summary>
