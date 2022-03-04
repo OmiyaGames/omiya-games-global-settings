@@ -79,6 +79,26 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="change-log">Change Log:</h1>
 
+<h2 id="120-pre1">1.2.0-pre.1</h2>
+<ul>
+<li><strong>Breaking Changes:</strong> Renaming enum fields in <a href=""><code>Data.cs</code></a>/Runtime/Data.cs) to be shorter:<ul>
+<li><code>RetrievedProjectData</code> has been changed to <code>Success</code>;<ul>
+<li><code>NowLoading</code> is shortened to <code>Loading</code>;</li>
+<li>and also added <code>Fail</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Breaking Changes:</strong> Making some changes in <a href="/Runtime/BaseSettingsManager.cs"><code>BaseSettingsManager.cs</code></a>:<ul>
+<li>Taking out protected static coroutine <code>WaitUntilRead()</code>.  This is replaced by...<ul>
+<li>Added <code>Setup(bool force)</code>, which not only is a public static coroutine that serve to setup the manager (if it isn&#39;t already, or <code>force</code> param is set to true), but uses <code>GetDataStatus()</code> to determine finish condition instead of <code>Data</code> being not-null.</li>
+<li>Added virtual method, <code>GetStatus()</code> which <code>GetDataStatus()</code> calls.  Determines the state of the manager.  If this method returns a value other than <code>Loading</code>, <code>Setup(bool)</code> assumes the manager is finished setting up.</li>
+<li>Adding helper methods <code>GetInstanceOrThrow()</code> and <code>GetDataOrThrow()</code>, both which does the same thing as <code>GetInstance()</code> and <code>GetData()</code>, but with error checking for whether the instance finished setup with <code>Success</code> or <code>UsingDefaultData</code> status.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="110-pre2">1.1.0-pre.2</h2>
 <ul>
 <li><strong>New Enhancement:</strong> Updating documentation on <a href="/Runtime/BaseSettingsManager.cs"><code>BaseSettingsManager.cs</code></a> encouraging a new standard: keep any extending classes private.  Updated certain method&#39;s access level, such as <code>GetInstance()</code> and <code>GetData()</code>, to public so this standard can more easily be enforced.</li>

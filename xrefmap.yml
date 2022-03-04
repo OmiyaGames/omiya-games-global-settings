@@ -128,6 +128,23 @@ references:
   fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetData
   nameWithType: BaseSettingsManager<TManager, TData>.GetData
   nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetData
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataOrThrow
+  name: GetDataOrThrow()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataOrThrow
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataOrThrow
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetDataOrThrow()
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetDataOrThrow()
+  nameWithType: BaseSettingsManager<TManager, TData>.GetDataOrThrow()
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetDataOrThrow()
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataOrThrow*
+  name: GetDataOrThrow
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataOrThrow_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataOrThrow
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetDataOrThrow
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetDataOrThrow
+  nameWithType: BaseSettingsManager<TManager, TData>.GetDataOrThrow
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetDataOrThrow
 - uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataStatus
   name: GetDataStatus()
   href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataStatus
@@ -162,6 +179,40 @@ references:
   fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetInstance
   nameWithType: BaseSettingsManager<TManager, TData>.GetInstance
   nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetInstance
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstanceOrThrow
+  name: GetInstanceOrThrow()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstanceOrThrow
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstanceOrThrow
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetInstanceOrThrow()
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetInstanceOrThrow()
+  nameWithType: BaseSettingsManager<TManager, TData>.GetInstanceOrThrow()
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetInstanceOrThrow()
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstanceOrThrow*
+  name: GetInstanceOrThrow
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstanceOrThrow_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstanceOrThrow
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetInstanceOrThrow
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetInstanceOrThrow
+  nameWithType: BaseSettingsManager<TManager, TData>.GetInstanceOrThrow
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetInstanceOrThrow
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetStatus
+  name: GetStatus()
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetStatus
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetStatus
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetStatus()
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetStatus()
+  nameWithType: BaseSettingsManager<TManager, TData>.GetStatus()
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetStatus()
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.GetStatus*
+  name: GetStatus
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetStatus_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.GetStatus
+  isSpec: "True"
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.GetStatus
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).GetStatus
+  nameWithType: BaseSettingsManager<TManager, TData>.GetStatus
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).GetStatus
 - uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.OnDestroy
   name: OnDestroy()
   href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_OnDestroy
@@ -196,23 +247,23 @@ references:
   fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).OnSetup
   nameWithType: BaseSettingsManager<TManager, TData>.OnSetup
   nameWithType.vb: BaseSettingsManager(Of TManager, TData).OnSetup
-- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady
-  name: WaitUntilReady()
-  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_WaitUntilReady
-  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady
-  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.WaitUntilReady()
-  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).WaitUntilReady()
-  nameWithType: BaseSettingsManager<TManager, TData>.WaitUntilReady()
-  nameWithType.vb: BaseSettingsManager(Of TManager, TData).WaitUntilReady()
-- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady*
-  name: WaitUntilReady
-  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_WaitUntilReady_
-  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.Setup(System.Boolean)
+  name: Setup(Boolean)
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_Setup_System_Boolean_
+  commentId: M:OmiyaGames.Global.Settings.BaseSettingsManager`2.Setup(System.Boolean)
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.Setup(System.Boolean)
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).Setup(System.Boolean)
+  nameWithType: BaseSettingsManager<TManager, TData>.Setup(Boolean)
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).Setup(Boolean)
+- uid: OmiyaGames.Global.Settings.BaseSettingsManager`2.Setup*
+  name: Setup
+  href: api/OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_Setup_
+  commentId: Overload:OmiyaGames.Global.Settings.BaseSettingsManager`2.Setup
   isSpec: "True"
-  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.WaitUntilReady
-  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).WaitUntilReady
-  nameWithType: BaseSettingsManager<TManager, TData>.WaitUntilReady
-  nameWithType.vb: BaseSettingsManager(Of TManager, TData).WaitUntilReady
+  fullName: OmiyaGames.Global.Settings.BaseSettingsManager<TManager, TData>.Setup
+  fullName.vb: OmiyaGames.Global.Settings.BaseSettingsManager(Of TManager, TData).Setup
+  nameWithType: BaseSettingsManager<TManager, TData>.Setup
+  nameWithType.vb: BaseSettingsManager(Of TManager, TData).Setup
 - uid: OmiyaGames.Global.Settings.Data
   name: Data
   href: api/OmiyaGames.Global.Settings.Data.html
@@ -241,18 +292,24 @@ references:
   commentId: T:OmiyaGames.Global.Settings.Data.Status
   fullName: OmiyaGames.Global.Settings.Data.Status
   nameWithType: Data.Status
-- uid: OmiyaGames.Global.Settings.Data.Status.NowLoading
-  name: NowLoading
-  href: api/OmiyaGames.Global.Settings.Data.Status.html#OmiyaGames_Global_Settings_Data_Status_NowLoading
-  commentId: F:OmiyaGames.Global.Settings.Data.Status.NowLoading
-  fullName: OmiyaGames.Global.Settings.Data.Status.NowLoading
-  nameWithType: Data.Status.NowLoading
-- uid: OmiyaGames.Global.Settings.Data.Status.RetrievedProjectData
-  name: RetrievedProjectData
-  href: api/OmiyaGames.Global.Settings.Data.Status.html#OmiyaGames_Global_Settings_Data_Status_RetrievedProjectData
-  commentId: F:OmiyaGames.Global.Settings.Data.Status.RetrievedProjectData
-  fullName: OmiyaGames.Global.Settings.Data.Status.RetrievedProjectData
-  nameWithType: Data.Status.RetrievedProjectData
+- uid: OmiyaGames.Global.Settings.Data.Status.Fail
+  name: Fail
+  href: api/OmiyaGames.Global.Settings.Data.Status.html#OmiyaGames_Global_Settings_Data_Status_Fail
+  commentId: F:OmiyaGames.Global.Settings.Data.Status.Fail
+  fullName: OmiyaGames.Global.Settings.Data.Status.Fail
+  nameWithType: Data.Status.Fail
+- uid: OmiyaGames.Global.Settings.Data.Status.Loading
+  name: Loading
+  href: api/OmiyaGames.Global.Settings.Data.Status.html#OmiyaGames_Global_Settings_Data_Status_Loading
+  commentId: F:OmiyaGames.Global.Settings.Data.Status.Loading
+  fullName: OmiyaGames.Global.Settings.Data.Status.Loading
+  nameWithType: Data.Status.Loading
+- uid: OmiyaGames.Global.Settings.Data.Status.Success
+  name: Success
+  href: api/OmiyaGames.Global.Settings.Data.Status.html#OmiyaGames_Global_Settings_Data_Status_Success
+  commentId: F:OmiyaGames.Global.Settings.Data.Status.Success
+  fullName: OmiyaGames.Global.Settings.Data.Status.Success
+  nameWithType: Data.Status.Success
 - uid: OmiyaGames.Global.Settings.Data.Status.UsingDefaultData
   name: UsingDefaultData
   href: api/OmiyaGames.Global.Settings.Data.Status.html#OmiyaGames_Global_Settings_Data_Status_UsingDefaultData

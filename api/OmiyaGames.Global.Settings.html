@@ -91,40 +91,8 @@
       <section><p>The data stored as addressables that the editor and runtime references</p>
 </section>
       <h4><a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html">BaseSettingsManager&lt;TManager, TData&gt;</a></h4>
-      <section><p>
-Abstract class that manages game interaction with
-<code data-dev-comment-type="typeparamref" class="typeparamref">TData</code>.
-</p><p>
-Most classes extending this should be a private class that a static
-class access:
-<pre><code>public static class TestManager
-{
-    // Add static methods and properties here
-    public static int CurrentVersion => TestSettingsManager.GetData().CurrentVersion;
-
-    // Creating a private implementation of BaseSettingsManager so
-    // it doesn&apos;t show up as a script that can be attached to a GameObject
-    private class TestSettingsManager : BaseSettingsManager&lt;TestSettingsManager, TestData>
-    {
-        // Return the expected addressable name here
-        protected override string AddressableName => &quot;Test&quot;;
-
-        // Optionally, override the OnSetup method to perform any setup
-        protected override IEnumerator OnSetup()
-        {
-            // The base method loads the data
-            yield return Manager.StartCoroutine(base.OnSetup());
-
-            // Perform some setup here
-            Debug.Log($&quot;Data version is {Data.CurrentVersion}&quot;);
-        }
-    }
-
-    // BaseSettingsData can be public, though;
-    // it&apos;s just a ScriptableObject.
-    public class TestData : BaseSettingsData { }
-}</code></pre>
-</p>
+      <section><p>Abstract class that manages game interaction with
+<code data-dev-comment-type="typeparamref" class="typeparamref">TData</code>.</p>
 </section>
       <h4><a class="xref" href="OmiyaGames.Global.Settings.Data.html">Data</a></h4>
       <section><p>Helper set of info.</p>

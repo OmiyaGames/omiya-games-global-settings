@@ -83,40 +83,8 @@
   
   <h1 id="OmiyaGames_Global_Settings_BaseSettingsManager_2" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2" class="text-break">Class BaseSettingsManager&lt;TManager, TData&gt;
   </h1>
-  <div class="markdown level0 summary"><p>
-Abstract class that manages game interaction with
-<code data-dev-comment-type="typeparamref" class="typeparamref">TData</code>.
-</p><p>
-Most classes extending this should be a private class that a static
-class access:
-<pre><code>public static class TestManager
-{
-    // Add static methods and properties here
-    public static int CurrentVersion => TestSettingsManager.GetData().CurrentVersion;
-
-    // Creating a private implementation of BaseSettingsManager so
-    // it doesn&apos;t show up as a script that can be attached to a GameObject
-    private class TestSettingsManager : BaseSettingsManager&lt;TestSettingsManager, TestData>
-    {
-        // Return the expected addressable name here
-        protected override string AddressableName => &quot;Test&quot;;
-
-        // Optionally, override the OnSetup method to perform any setup
-        protected override IEnumerator OnSetup()
-        {
-            // The base method loads the data
-            yield return Manager.StartCoroutine(base.OnSetup());
-
-            // Perform some setup here
-            Debug.Log($&quot;Data version is {Data.CurrentVersion}&quot;);
-        }
-    }
-
-    // BaseSettingsData can be public, though;
-    // it&apos;s just a ScriptableObject.
-    public class TestData : BaseSettingsData { }
-}</code></pre>
-</p>
+  <div class="markdown level0 summary"><p>Abstract class that manages game interaction with
+<code data-dev-comment-type="typeparamref" class="typeparamref">TData</code>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -183,8 +151,79 @@ THE SOFTWARE.
 Making the script returned by <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstance">GetInstance()</a> deactivated
 by default. User will have to override <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_OnSetup">OnSetup()</a> to
 activate the script on start.
+</td></tr><tr><td>
+<strong>Version:</strong> 1.2.0-pre.1<br>
+<strong>Date:</strong> 3/3/2022<br>
+<strong>Author:</strong> Taro Omiya
+</td><td>
+<p>
+Adding breaking changes:
+</p><p>
+Replacing coroutine <code>WaitUntilRead()</code> with <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_Setup_System_Boolean_">Setup(Boolean)</a>.
+</p><p>
+Adding virtual method <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetStatus">GetStatus()</a>. This needs to be
+overridden if <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_OnSetup">OnSetup()</a> is overridden as well, as
+<a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_Setup_System_Boolean_">Setup(Boolean)</a> uses <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetStatus">GetStatus()</a> to determine
+when <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_OnSetup">OnSetup()</a> method is done.  See example code below
+for more details.
+</p><p>
+Added helper methods <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstanceOrThrow">GetInstanceOrThrow()</a> and <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataOrThrow">GetDataOrThrow()</a>.
+</p>
 </td></tr></tbody></table></p>
 </div>
+  <h5 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_examples"><strong>Examples</strong></h5>
+  <p>Most classes extending this should be a private class that a static
+class access:</p>
+<pre><code>using System.Collections;
+
+public static class TestManager
+{
+    // Add static methods and properties here
+    public static IEnumerator Setup(bool force)
+    {
+        // This coroutine ends when GetStatus() returns
+        // a value other than Data.Status.Loading
+        yield return Manager.StartCoroutine(TestSettingsManager.Setup(force));
+    }
+
+    public static int CurrentVersion => TestSettingsManager.GetDataOrThrow().CurrentVersion;
+
+    // Creating a private implementation of BaseSettingsManager so
+    // it doesn&apos;t show up as a script that can be attached to a GameObject
+    class TestSettingsManager : BaseSettingsManager&lt;TestSettingsManager, TestData>
+    {
+        // Return the expected addressable name here
+        protected override string AddressableName => &quot;Test&quot;;
+
+        // Optionally, override the OnSetup method to perform any setup
+        Data.Status status = Data.Status.Loading;
+
+        protected override IEnumerator OnSetup()
+        {
+            // Indicate loading
+            status = Data.Status.Loading;
+
+            // The base method loads the data
+            yield return Manager.StartCoroutine(base.OnSetup());
+
+            // Perform some setup here
+            Debug.Log($&quot;Data version is {Data.CurrentVersion}&quot;);
+
+            // Indicate loading finished
+            status = base.GetStatus();
+        }
+
+        // If OnSetup method is overridden, don&apos;t forget to override GetStatus as well.
+        // If this method returns a value other than Data.Status.Loading, Setup(bool)
+        // assumes OnSetup is finished (though not necessarily setup successfully.)
+        public override Data.Status GetStatus() => status;
+    }
+
+    // BaseSettingsData can be public, though;
+    // it&apos;s just a ScriptableObject.
+    public class TestData : BaseSettingsData { }
+}</code></pre>
+
   <h3 id="properties">Properties
   </h3>
   
@@ -273,6 +312,48 @@ activate the script on start.
   </div>
   
   
+  <a id="OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataOrThrow_" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataOrThrow*"></a>
+  <h4 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataOrThrow" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataOrThrow">GetDataOrThrow()</h4>
+  <div class="markdown level1 summary"><p>Same thing as <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetData">GetData()</a>,
+but throws an exception if not setup correctly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TData GetDataOrThrow()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataStatus_" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataStatus*"></a>
   <h4 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_GetDataStatus" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.GetDataStatus">GetDataStatus()</h4>
   <div class="markdown level1 summary"><p>Current status of whether
@@ -330,6 +411,74 @@ data for this manager has been loaded or not</p>
   </div>
   
   
+  <a id="OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstanceOrThrow_" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstanceOrThrow*"></a>
+  <h4 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstanceOrThrow" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.GetInstanceOrThrow">GetInstanceOrThrow()</h4>
+  <div class="markdown level1 summary"><p>Same thing as <a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetInstance">GetInstance()</a>,
+but throws an exception if not setup correctly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TManager GetInstanceOrThrow()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TManager</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="OmiyaGames_Global_Settings_BaseSettingsManager_2_GetStatus_" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.GetStatus*"></a>
+  <h4 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_GetStatus" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.GetStatus">GetStatus()</h4>
+  <div class="markdown level1 summary"><p>Retrieves the current status of this manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Data.Status GetStatus()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="OmiyaGames.Global.Settings.Data.Status.html">Data.Status</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="OmiyaGames_Global_Settings_BaseSettingsManager_2_OnDestroy_" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.OnDestroy*"></a>
   <h4 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_OnDestroy" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.OnDestroy">OnDestroy()</h4>
   <div class="markdown level1 summary"><p>Event called on disposing this manager.</p>
@@ -366,18 +515,40 @@ data for this manager has been loaded or not</p>
       </tr>
     </tbody>
   </table>
+  <h5 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_OnSetup_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If this method is overridden, don&apos;t forget to override
+<a class="xref" href="OmiyaGames.Global.Settings.BaseSettingsManager-2.html#OmiyaGames_Global_Settings_BaseSettingsManager_2_GetStatus">GetStatus()</a> as well.</p>
+</div>
   
   
-  <a id="OmiyaGames_Global_Settings_BaseSettingsManager_2_WaitUntilReady_" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady*"></a>
-  <h4 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_WaitUntilReady" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.WaitUntilReady">WaitUntilReady()</h4>
-  <div class="markdown level1 summary"><p>Created a coroutine that waits until this manager
-finished loading its data.</p>
+  <a id="OmiyaGames_Global_Settings_BaseSettingsManager_2_Setup_" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.Setup*"></a>
+  <h4 id="OmiyaGames_Global_Settings_BaseSettingsManager_2_Setup_System_Boolean_" data-uid="OmiyaGames.Global.Settings.BaseSettingsManager`2.Setup(System.Boolean)">Setup(Boolean)</h4>
+  <div class="markdown level1 summary"><p>A coroutine to setup this manager.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerator WaitUntilReady()</code></pre>
+    <pre><code class="lang-csharp hljs">public static IEnumerator Setup(bool forceSetup = false)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">forceSetup</span></td>
+        <td><p>If true, forces the manager to perform setup again, assuming
+it already is in the middle of that.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
